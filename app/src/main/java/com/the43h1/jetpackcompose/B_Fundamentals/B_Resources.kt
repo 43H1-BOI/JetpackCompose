@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.the43h1.jetpackcompose.R
 
 @Composable
-fun AccessResources(){
+fun AccessResources() {
     // Kind of Container
     Box(
         // Used to modify layout
@@ -29,8 +29,9 @@ fun AccessResources(){
         // to Align Content
         // where does the object is placed
         contentAlignment = Alignment.Center
-    ){
-        Text(text = "Owner Name = ${stringResource(R.string.owner)}",
+    ) {
+        Text(
+            text = "Owner Name = ${stringResource(R.string.owner)}",
             // Added Color
             color = colorResource(R.color.mera_color)
         )
@@ -38,12 +39,18 @@ fun AccessResources(){
 }
 
 @Composable
-fun AccessImages(){
-    Box(modifier=Modifier.fillMaxHeight().padding(20.dp),
-        contentAlignment = Alignment.Center){
-        Image(painter = painterResource(R.drawable.palm),
+fun AccessImages() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        contentAlignment = Alignment.BottomEnd
+    ) {
+        Image(
+            painter = painterResource(R.drawable.palm),
             // must give value else will give error
-            contentDescription = null)
+            contentDescription = null
+        )
     }
 }
 
@@ -51,7 +58,7 @@ fun AccessImages(){
 // Using locale = "hi-rIN" for hindi string
 @Preview(showSystemUi = true, locale = "hi-rIN")
 @Composable
-fun AccessResourcesPreview(){
-   AccessResources()
-//    AccessImages()
+fun AccessResourcesPreview() {
+    AccessResources()
+    AccessImages()
 }
