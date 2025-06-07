@@ -38,6 +38,28 @@ fun RainbowText(){
 //              OR
         Color.Red
     )
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            // buildAnnotatedString for functions like append()
+            text = buildAnnotatedString {
+                append("I am not here to\n")
+                // Used to apply styling to text
+                withStyle(
+                    SpanStyle(
+                        brush = Brush.linearGradient(
+                            colors = rainbow
+                        )
+                    )
+                ) {
+                    append("Interfere in Anyone's Matter\n")
+                }
+                append("I am here to build my own Empire")
+            }
+        )
+    }
 }
 
 @Preview(showSystemUi = true)
