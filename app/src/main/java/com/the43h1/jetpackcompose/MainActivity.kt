@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.B_Fundamentals.AccessResources
+import com.the43h1.jetpackcompose.C_Core_Components.SimpleOne
 import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetpackComposeTheme {
-                AccessResources()
+//                AccessResources()
+//                ScrollableText()
+//                EverythingCombined()
+                SimpleOne()
             }
         }
     }
