@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
 //                AccessResources()
 //                ScrollableText()
 //                EverythingCombined()
-                SimpleOne()
+//                SimpleOne()
             }
         }
     }

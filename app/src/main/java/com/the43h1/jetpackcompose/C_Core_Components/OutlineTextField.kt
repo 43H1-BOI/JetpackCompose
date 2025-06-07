@@ -1,6 +1,5 @@
 package com.the43h1.jetpackcompose.C_Core_Components
 
-import android.text.method.PasswordTransformationMethod
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,7 +18,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.the43h1.jetpackcompose.R
 
@@ -158,5 +156,5 @@ fun PasswordField() {
 fun OutlineTextFieldPreview() {
 //    SimpleOne()
 //    OutlinedOne()
-    PasswordField()
+//    PasswordField()
 }
