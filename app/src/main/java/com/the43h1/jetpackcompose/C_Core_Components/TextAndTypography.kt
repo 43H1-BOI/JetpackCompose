@@ -49,9 +49,9 @@ fun RainbowText(){
                 // Used to apply styling to text
                 withStyle(
                     SpanStyle(
-                        brush = Brush.radialGradient(
+                        brush = Brush.verticalGradient(
                             colors = rainbow ,
-                            radius = 200f
+                            endY = 135f
                         )
                     )
                 ) {
