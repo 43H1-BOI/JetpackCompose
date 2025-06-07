@@ -1,14 +1,12 @@
 package com.the43h1.jetpackcompose.C_Core_Components
 
-import android.widget.Space
+import android.text.method.PasswordTransformationMethod
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,12 +14,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.the43h1.jetpackcompose.R
 
 
 @Composable
-fun SimpleOne() {
+fun OutlinedOne() {
     // remember is used to let ui remember the start state so that it can proceed to next state
     // to save state locally
     var email by remember {
@@ -82,9 +86,77 @@ fun SimpleOne() {
     */
 }
 
+@Composable
+fun SimpleOne() {
+    var rainbow = listOf(
+        colorResource(R.color.violet),
+        colorResource(R.color.indigo),
+        colorResource(R.color.blue),
+        colorResource(R.color.green),
+        colorResource(R.color.yellow),
+        colorResource(R.color.orange),
+        colorResource(R.color.red),
+    )
+
+    var text by remember {
+        mutableStateOf("")
+    }
+
+    var rangila = remember {
+        Brush.linearGradient(
+            colors = rainbow
+        )
+    }
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        TextField(
+            value = text,
+            label = {
+                Text("Colorful Text")
+            },
+            onValueChange = {
+                text = it
+            },
+            // brushing over text field
+            textStyle = TextStyle(brush = rangila)
+        )
+    }
+}
+
+@Composable
+fun PasswordField() {
+    var password by remember {
+        mutableStateOf("")
+    }
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+
+        TextField(
+            value = password,
+            onValueChange = {
+                password = it
+            },
+            label = {
+                Text("Password")
+            },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            )
+        )
+    }
+}
 
 @Preview(showSystemUi = true)
 @Composable
 fun OutlineTextFieldPreview() {
-    SimpleOne()
+//    SimpleOne()
+//    OutlinedOne()
+    PasswordField()
 }
