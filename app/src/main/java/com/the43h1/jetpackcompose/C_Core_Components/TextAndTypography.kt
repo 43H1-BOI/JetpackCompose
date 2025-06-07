@@ -63,6 +63,22 @@ fun RainbowText(){
     }
 }
 
+@Composable
+fun ScrollableText() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+//        Text(text = "Breaking News : Pushpa Bhau ne di Sikhawat ko Dhamki")
+        Text(
+            text = "Jo Maal Aana Hoga Aaega , Jo Maal Jana Hoga Jaega ,Or Tujhe Ek Phooti Kodi bhi nhi milegi . Me Dekhta hu tu Kese Rokega Kutte !",
+            modifier = Modifier.basicMarquee().padding(2.dp)
+        )
+//        Text(text = "Me Dekhta hu tu Kese Rokega Kutte !")
+//        Text(text = "Tujhe Ek Phooti Kodi bhi nhi milegi")
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun TextPreview() {
