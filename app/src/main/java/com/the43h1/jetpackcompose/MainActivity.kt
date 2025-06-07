@@ -1,0 +1,20 @@
+package com.the43h1.jetpackcompose
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import com.the43h1.jetpackcompose.B_Fundamentals.AccessResources
+import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            JetpackComposeTheme {
+                AccessResources()
+            }
+        }
+    }
+}
