@@ -48,6 +48,7 @@ fun AccessImages(){
 }
 
 
+// Using locale = "hi-rIN" for hindi string
 @Preview(showSystemUi = true, locale = "hi-rIN")
 @Composable
 fun AccessResourcesPreview(){
