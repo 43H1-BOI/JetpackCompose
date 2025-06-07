@@ -61,11 +61,49 @@ fun EverythingCombined() {
                     .basicMarquee(
                         repeatDelayMillis = 0
 //                ,     animationMode = MarqueeAnimationMode.WhileFocused
-                    )
+                        )
+                )
+            }
+
+            var review by rememberSaveable {
+                mutableStateOf("")
+            }
+
+            TextField(
+                value = review,
+                onValueChange = {
+                    review = it
+                },
+                label = {
+                    Text("Enter Your Reviews on this Matter")
+                },
+                modifier = Modifier
+                    .absoluteOffset(x = 0.dp, y = (0).dp)
+                    .size(height = 125.dp, width = 300.dp)
             )
+        } else if (password.equals("")) {
+
+            Text(
+                text, modifier = Modifier
+                    .offset(
+                        x = 0.dp, y = -(50).dp
+                    ), fontWeight = FontWeight.SemiBold,
+                textDecoration = TextDecoration.Underline,
+                fontSize = 30.sp, color = colorResource(R.color.white)
+            )
+
+        } else {
+            Text(
+                "Entered Wrong Password ! Try Again...", modifier = Modifier
+                    .offset(
+                        x = 0.dp, y = -(50).dp
+                    ), fontWeight = FontWeight.SemiBold,
+                fontSize = 30.sp, color = colorResource(R.color.red),
+            ).delay(1000)
         }
     }
 }
+
 
 @Preview(showSystemUi = true)
 @Composable
