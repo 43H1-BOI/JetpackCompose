@@ -25,6 +25,21 @@ fun SimpleText() {
     }
 }
 
+@Composable
+fun RainbowText(){
+    val rainbow = listOf(
+        colorResource(R.color.violet),
+        colorResource(R.color.indigo),
+        colorResource(R.color.blue),
+        colorResource(R.color.green),
+        colorResource(R.color.yellow),
+        colorResource(R.color.orange),
+//      colorResource(R.color.red),
+//              OR
+        Color.Red
+    )
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun TextPreview() {
