@@ -19,7 +19,8 @@ fun SimpleText() {
     {
         Text(
             text = "Hello Jetpack Compose",
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center ,
+            color = colorResource(R.color.mera_color)
         )
     }
 }
