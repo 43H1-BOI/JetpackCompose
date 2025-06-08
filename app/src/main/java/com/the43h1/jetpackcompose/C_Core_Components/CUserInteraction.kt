@@ -40,6 +40,38 @@ fun SelectableText() {
     }
 }
 
+@Composable
+fun WorkingLinks() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+
+        var uriHandler = LocalUriHandler.current
+
+        Text(
+            buildAnnotatedString {
+                append("Follow us on ")
+
+                val link = LinkAnnotation.Url(
+                    "",
+                    TextLinkStyles(
+                        SpanStyle(
+                            color = colorResource(R.color.mera_color)
+                        )
+                    )
+                ) {
+                    val url = (it by LinkAnnotation.Url).url
+                    uriHandler.openUri(url)
+                }
+
+
+            }
+        )
+    }
+}
+
+
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewScreen() {
