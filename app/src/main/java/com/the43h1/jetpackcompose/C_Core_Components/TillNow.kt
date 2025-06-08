@@ -1,6 +1,5 @@
 package com.the43h1.jetpackcompose.C_Core_Components
 
-import android.text.style.StyleSpan
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
@@ -26,7 +26,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -37,28 +36,33 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.the43h1.jetpackcompose.R
-import kotlinx.coroutines.delay
 
 
 @Composable
 fun EverythingCombined() {
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
 
+        // Background Image
         Image(
             painter = painterResource(R.drawable.not_allowed),
             contentDescription = "Not Allowed",
             contentScale = ContentScale.FillHeight
         )
 
+        // Password Field Text
         var password by remember {
             mutableStateOf("")
         }
 
-        var text = "Enter Password"
+        // Enter Password and Instructions
+        var text by remember {
+            mutableStateOf("Enter Password")
+        }
 
         TextField(
             value = password,
@@ -112,6 +116,7 @@ fun EverythingCombined() {
                 )
             }
 
+            // To Get Reviews (Box)
             var review by rememberSaveable {
                 mutableStateOf("")
             }
@@ -128,8 +133,10 @@ fun EverythingCombined() {
                     .absoluteOffset(x = 0.dp, y = (0).dp)
                     .size(height = 125.dp, width = 300.dp)
             )
-        } else if (password.equals("")) {
-
+        } else {
+            if (!password.equals("")) {
+                text = "Entered Wrong Password ! Try Again..."
+            }
             Text(
                 text, modifier = Modifier
                     .offset(
@@ -137,15 +144,6 @@ fun EverythingCombined() {
                     ), fontWeight = FontWeight.SemiBold,
                 textDecoration = TextDecoration.Underline,
                 fontSize = 30.sp, color = colorResource(R.color.white)
-            )
-
-        } else {
-            Text(
-                "Entered Wrong Password ! Try Again...", modifier = Modifier
-                    .offset(
-                        x = 0.dp, y = -(50).dp
-                    ), fontWeight = FontWeight.SemiBold,
-                fontSize = 30.sp, color = colorResource(R.color.red)
             )
         }
     }
