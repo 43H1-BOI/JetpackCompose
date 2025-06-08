@@ -8,11 +8,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -59,8 +62,21 @@ fun ImageEditor() {
                 .size(400.dp)
                 .align(Alignment.CenterHorizontally)
                 .scale(1.5f)
-                .alpha(0.5f)
+                .alpha(0.9f)
         )
+
+        Image(
+            painter = painterResource(R.drawable.not_allowed),
+            contentDescription = null,
+            modifier = Modifier
+                .border(
+                    width = 5.dp,
+                    color = Color.Green,
+                    shape = RoundedCornerShape(corner = CornerSize(20.dp))
+                )
+                .clip(shape = RoundedCornerShape(20.dp))
+        )
+
     }
 }
 
