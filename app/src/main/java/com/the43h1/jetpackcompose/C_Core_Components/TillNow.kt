@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
@@ -42,27 +41,21 @@ import com.the43h1.jetpackcompose.R
 fun EverythingCombined() {
 
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
 
-        // Background Image
         Image(
             painter = painterResource(R.drawable.not_allowed),
             contentDescription = "Not Allowed",
             contentScale = ContentScale.FillHeight
         )
 
-        // Password Field Text
         var password by remember {
             mutableStateOf("")
         }
 
-        // Enter Password and Instructions
-        var text by remember {
-            mutableStateOf("Enter Password")
-        }
+        var text = "Enter Password"
 
         TextField(
             value = password,
@@ -116,7 +109,6 @@ fun EverythingCombined() {
                 )
             }
 
-            // To Get Reviews (Box)
             var review by rememberSaveable {
                 mutableStateOf("")
             }
@@ -133,10 +125,8 @@ fun EverythingCombined() {
                     .absoluteOffset(x = 0.dp, y = (0).dp)
                     .size(height = 125.dp, width = 300.dp)
             )
-        } else {
-            if (!password.equals("")) {
-                text = "Entered Wrong Password ! Try Again..."
-            }
+        } else if (password.equals("")) {
+
             Text(
                 text, modifier = Modifier
                     .offset(
@@ -144,6 +134,15 @@ fun EverythingCombined() {
                     ), fontWeight = FontWeight.SemiBold,
                 textDecoration = TextDecoration.Underline,
                 fontSize = 30.sp, color = colorResource(R.color.white)
+            )
+
+        } else {
+            Text(
+                "Entered Wrong Password ! Try Again...", modifier = Modifier
+                    .offset(
+                        x = 0.dp, y = -(50).dp
+                    ), fontWeight = FontWeight.SemiBold,
+                fontSize = 30.sp, color = colorResource(R.color.red)
             )
         }
     }

@@ -16,8 +16,20 @@
 - uses @Composable for initialisation
 - imports androidx.compose.runtime.Composable
 
+- Rules for Composable Function Naming :
+   - MUST be a noun: `DoneButton()`
+   - NOT a verb or verb phrase: `DrawTextField()`
+   - NOT a nouned preposition: `TextFieldWithLink()`
+   - NOT an adjective: `Bright()`
+   - NOT an adverb: `Outside()`
+   - Nouns MAY be prefixed by descriptive adjectives: `RoundIcon()`
+   - 
+
 **Preview Function**
 - Used to Preview Composable Functions
 - uses @Preview
 - showSystemUi = true to view with system UI
-- 
+
+
+**Buttons**
+- Buttons used onClick = {..} function to perform Action
