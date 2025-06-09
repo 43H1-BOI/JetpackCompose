@@ -10,4 +10,8 @@
     <string name="topLAndBottomL" translatable="false">TL and BL</string>
     <string name="topRAndBottomR" translatable="false">TR and BR</string>
     <string name="bottomLAndBottomR" translatable="false">BL and BR</string>
+
+    <string name="fruits" translatable="false">https://fruits.com</string>
+    <string name="baatman" translatable="false">https://batman.com</string>
+    <string name="lotus" translatable="false">https://lotus.com</string>
 </resources>
