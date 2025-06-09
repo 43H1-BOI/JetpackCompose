@@ -84,16 +84,16 @@ fun LazyColumnEx() {
                 Spacer(Modifier.size(20.dp))
 
                 Image(painter = painterResource(R.drawable.monkey), contentDescription = null)
-                Spacer(Modifier.size(50.dp))
+                Spacer(Modifier.size(20.dp))
 
                 Image(painter = painterResource(R.drawable.lotus), contentDescription = null)
-                Spacer(Modifier.size(50.dp))
+                Spacer(Modifier.size(20.dp))
 
                 Image(painter = painterResource(R.drawable.palm), contentDescription = null)
-                Spacer(Modifier.size(50.dp))
+                Spacer(Modifier.size(20.dp))
 
                 Image(painter = painterResource(R.drawable.whiteflower), contentDescription = null)
-                Spacer(Modifier.size(50.dp))
+                Spacer(Modifier.size(20.dp))
             }
         }
     }
