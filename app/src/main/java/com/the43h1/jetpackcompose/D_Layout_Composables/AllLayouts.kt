@@ -109,6 +109,66 @@ fun BoxEx() {
     }
 }
 
+// Constraint Layout is Very Complex and Resource Heavy
+// Only use when needed
+// dependencies are needed for this one
+@Composable
+fun ConstraintsEx() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        // Creating Reference
+//        val (text1,text2,text3,text4) =  createRefs() // Not Working :?
+        val topLeft = ConstrainedLayoutReference(R.string.topLeft)
+        val topRight = ConstrainedLayoutReference(R.string.topRight)
+        val bottomLeft = ConstrainedLayoutReference(R.string.bottomLeft)
+        val bottomRight = ConstrainedLayoutReference(R.string.bottomRight)
+
+        ConstraintLayout(
+            modifier = Modifier
+                .fillMaxSize()
+                .statusBarsPadding()
+        ) {
+            Text(
+                "Top Left", // can use this
+                modifier = Modifier.constrainAs(topLeft) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                }
+            )
+
+            Text(
+                stringResource(R.string.topRight), // or this
+                modifier = Modifier.constrainAs(topRight) {
+                    top.linkTo(parent.top)
+                    end.linkTo(parent.end)
+                }
+            )
+
+            Text(
+                stringResource(R.string.bottomLeft), // or this
+                modifier = Modifier.constrainAs(bottomLeft) {
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                }
+            )
+
+            Text(
+                stringResource(R.string.bottomRight), // or this
+                modifier = Modifier.constrainAs(bottomRight) {
+                    bottom.linkTo(parent.bottom)
+                    end.linkTo(parent.end)
+                }
+            )
+
+
+        }
+
+
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun ExPreview() {
