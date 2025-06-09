@@ -58,8 +58,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation(libs.androidx.constraintlayout)
     // To use constraintlayout in compose
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
+    implementation(libs.androidx.constraintlayout.compose)
 
+    // For Images from Internet
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }
