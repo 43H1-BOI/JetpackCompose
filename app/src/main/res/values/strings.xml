@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Jetpack Compose</string>
     <string name="owner">Abhishek Yadav</string>
+    <string name="topLeft" translatable="false">Top Left</string>
+    <string name="topRight" translatable="false">Top Right</string>
+    <string name="bottomLeft" translatable="false">Bottom Left</string>
+    <string name="bottomRight" translatable="false">Bottom Right</string>
+    <string name="center" translatable="false">Center</string>
+    <string name="topLAndTopR" translatable="false">TL and TR</string>
+    <string name="topLAndBottomL" translatable="false">TL and BL</string>
+    <string name="topRAndBottomR" translatable="false">TR and BR</string>
+    <string name="bottomLAndBottomR" translatable="false">BL and BR</string>
 </resources>
