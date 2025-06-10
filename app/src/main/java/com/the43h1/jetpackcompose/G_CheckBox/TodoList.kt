@@ -4,15 +4,22 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
@@ -35,8 +42,15 @@ import com.the43h1.jetpackcompose.R
 @Composable
 fun TodoApp() {
     var todoList =
-        mutableListOf<String>("Kotlin", "Android Basics", "Jetpack Compose", "SQLite DB", "DSA")
+        mutableListOf<String>(
+            "Kotlin", "Android Basics", "Jetpack Compose", "SQLite DB", "DSA"
+        )
 
+    // ( size ){ each item marked false }
+    var checkedState =
+        remember { mutableStateListOf<Boolean>(*Array(todoList.size) { false }) }
+
+    // Context for Toast
     var context = LocalContext.current.applicationContext
 
     Column(
@@ -64,10 +78,50 @@ fun TodoApp() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 20.dp, bottom = 10.dp),
-                fontSize = 20.sp,
+                fontSize = 30.sp,
                 fontWeight = FontWeight.ExtraBold,
                 textAlign = TextAlign.Center
             )
+
+            LazyColumn(
+                modifier = Modifier
+                    .statusBarsPadding()
+                    .size(700.dp)
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            )
+            {
+                // For Displaying Each Items from the List
+                itemsIndexed(todoList) { index, items ->
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    // Contains Box and Text in Row
+                    {
+
+                        Checkbox(
+                            checked = checkedState[index], onCheckedChange = {
+                                checkedState[index] = it
+
+                            }, modifier = Modifier
+                                .size(25.dp)
+                                .padding(start = 10.dp, end = 10.dp)
+                                .align(Alignment.CenterVertically)
+                        )
+
+                        Text(
+                            items,
+                            modifier = Modifier.padding(start = 10.dp),
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 25.sp,
+                            maxLines = 2
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -137,6 +191,6 @@ fun NeonShape() {
 @Preview(showSystemUi = true)
 @Composable
 fun NeonPreview() {
-    NeonShape()
-//    TodoApp()
+//    NeonShape()
+    TodoApp()
 }
