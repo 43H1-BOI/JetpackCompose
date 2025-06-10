@@ -38,21 +38,24 @@ fun MineInputChip() {
             mutableStateOf(true)
         }
 
-        AnimatedVisibility(
-            enabled,
-            enter = expandHorizontally(expandFrom = Alignment.Start),
-            exit = ExitTransition.None
-        ) {
-            InputChip(
-                selected = enabled,
-                onClick = {
-                    enabled = false
-                },
-                label = {
-                    Text("Enabled")
-                },
+        InputChip(
+            selected = enabled,
+            onClick = {
+                enabled =
+                    if (enabled) false
+                    else true
+            },
+            label = {
+                if (enabled) Text("Enabled")
+                else Text("Disabled")
+            },
 
-                leadingIcon = {
+            leadingIcon = {
+                AnimatedVisibility(
+                    enabled,
+                    enter = expandHorizontally(expandFrom = Alignment.Start),
+                    exit = ExitTransition.None
+                ) {
                     Icon(
                         Icons.Filled.Done,
                         null,
@@ -60,23 +63,14 @@ fun MineInputChip() {
                             .size(InputChipDefaults.AvatarSize)
                     )
                 }
-            )
-        }
-        AnimatedVisibility(
-            !enabled,
-            enter = expandHorizontally(),
-            exit = ExitTransition.None
-        ) {
-            InputChip(
-                selected = !enabled,
-                onClick = {
-                    enabled = true
-                },
-                label = {
-                    Text("Disabled")
-                },
+            },
 
-                trailingIcon = {
+            trailingIcon = {
+                AnimatedVisibility(
+                    !enabled,
+                    enter = expandHorizontally(),
+                    exit = ExitTransition.None
+                ) {
                     Icon(
                         Icons.Filled.Clear,
                         null,
@@ -84,8 +78,9 @@ fun MineInputChip() {
                             .size(InputChipDefaults.AvatarSize)
                     )
                 }
-            )
-        }
+            }
+
+        )
     }
 }
 
