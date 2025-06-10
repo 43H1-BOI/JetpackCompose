@@ -1,5 +1,8 @@
 package com.the43h1.jetpackcompose.H_Input_Chip
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,7 +38,11 @@ fun MineInputChip() {
             mutableStateOf(true)
         }
 
-        if (enabled) {
+        AnimatedVisibility(
+            enabled,
+            enter = expandHorizontally(expandFrom = Alignment.Start),
+            exit = ExitTransition.None
+        ) {
             InputChip(
                 selected = enabled,
                 onClick = {
@@ -54,8 +61,12 @@ fun MineInputChip() {
                     )
                 }
             )
-        } else {
-
+        }
+        AnimatedVisibility(
+            !enabled,
+            enter = expandHorizontally(),
+            exit = ExitTransition.None
+        ) {
             InputChip(
                 selected = !enabled,
                 onClick = {
