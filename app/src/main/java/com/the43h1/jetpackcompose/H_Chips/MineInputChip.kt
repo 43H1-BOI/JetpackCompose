@@ -1,4 +1,4 @@
-package com.the43h1.jetpackcompose.H_Input_Chip
+package com.the43h1.jetpackcompose.H_Chips
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
@@ -64,7 +64,6 @@ fun MineInputChip() {
                     )
                 }
             },
-
             trailingIcon = {
                 AnimatedVisibility(
                     !enabled,

@@ -1,4 +1,4 @@
-package com.the43h1.jetpackcompose.FCards
+package com.the43h1.jetpackcompose.F_Cards
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

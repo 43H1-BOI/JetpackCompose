@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.C_Core_Components.IconsEx
 import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +21,8 @@ class MainActivity : ComponentActivity() {
 //                AllButtons()
 //                ShoppingCards()
 //                InternetImage()
-                IconsEx()
+//                IconsEx()
+//                TodoApp()
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.the43h1.jetpackcompose.FCards
+package com.the43h1.jetpackcompose.F_Cards
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -19,7 +19,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.the43h1.jetpackcompose.R

@@ -1,4 +1,4 @@
-package com.the43h1.jetpackcompose.G_CheckBox
+package com.the43h1.jetpackcompose.G_Check_Box
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas

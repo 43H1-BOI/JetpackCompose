@@ -1,4 +1,4 @@
-package com.the43h1.jetpackcompose.G_CheckBox
+package com.the43h1.jetpackcompose.G_Check_Box
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
