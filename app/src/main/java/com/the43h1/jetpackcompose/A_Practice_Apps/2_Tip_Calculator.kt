@@ -127,7 +127,7 @@ fun LayoutTip2() {
         mutableIntStateOf(0)
     }
 
-    var toogleSwitch: Boolean by remember {
+    var toggleSwitch: Boolean by remember {
         mutableStateOf(false)
     }
 
@@ -139,7 +139,6 @@ fun LayoutTip2() {
         modifier = Modifier
             .statusBarsPadding()
             .fillMaxWidth()
-//            .background(Color.LightGray)
             .padding(10.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -196,24 +195,17 @@ fun LayoutTip2() {
                 "Round Off Tip?",
                 textAlign = TextAlign.Start,
                 modifier = Modifier
-//                    .align(Alignment.CenterVertically)
-//                    .padding(start = 10.dp)
             )
             Switch(
-                checked = toogleSwitch,
+                checked = toggleSwitch,
                 onCheckedChange = {
-                    toogleSwitch = !toogleSwitch
+                    toggleSwitch = !toggleSwitch
                     tip.roundToInt()
                 }, thumbContent = {
-                    AnimatedVisibility(toogleSwitch) {
+                    AnimatedVisibility(toggleSwitch) {
                         Icon(Icons.Default.Done, null)
                     }
-
-//                    ?else
-//                    Icon(Icons.Default.Close, null)
                 }, modifier = Modifier
-//                    .height(10.dp)
-//                    .size(200.dp)
             )
         }
 
@@ -222,12 +214,9 @@ fun LayoutTip2() {
                 if (costOfService == 0) "Enter Cost of Service"
                 else if (tipPercent == 0) "Enter Tip Percentage"
                 else {
-                    tip = calcTipLogic(
-                        costOfService,
-                        tipPercent
-                    )
+                    tip = calcTipLogic(costOfService, tipPercent)
                     "Thanks for \u20B9${
-                        if (!toogleSwitch) tip
+                        if (!toggleSwitch) tip
                         else tip.roundToInt()
                     } Tip \nMay You Got All Happiness in Your Life"
                 },
