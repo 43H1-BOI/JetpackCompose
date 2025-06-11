@@ -26,14 +26,6 @@ import com.the43h1.jetpackcompose.R
 
 @Composable
 fun PhotoAppLayout() {
-//
-//    var imageList = listOf(
-//        painterResource(R.drawable.fruits),
-//        painterResource(R.drawable.pinkflower),
-//        painterResource(R.drawable.palm),
-//        painterResource(R.drawable.monkey)
-//    )
-
     var imageDesc = mapOf<Painter, String>(
         painterResource(R.drawable.fruits) to "4 Fruits |Abhishek Yadav(2025)",
 //        painterResource(R.drawable.pinkflower) to "These are Pink Flowers",
