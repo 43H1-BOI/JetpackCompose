@@ -36,8 +36,9 @@ import com.the43h1.jetpackcompose.R
 import kotlin.math.roundToInt
 
 // To Calculate Tip Logic for Tip Layout 2
-fun calcTipLogic(costOfService: Int, tipPercent: Int) =
+var calcTipLogic: (Int, Int) -> Float = { costOfService, tipPercent ->
     (costOfService * (tipPercent.toFloat() / 100))
+}
 
 @Composable
 fun LayoutTip1() {
