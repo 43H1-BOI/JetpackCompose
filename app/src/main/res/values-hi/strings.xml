@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Jetpack Compose</string>
     <string name="owner">अभिषेक यादव</string>
+    <string name="tipCalc">टिप कैलकुलेटर</string>
 </resources>

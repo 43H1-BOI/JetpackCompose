@@ -14,4 +14,8 @@
     <string name="fruits" translatable="false">https://fruits.com</string>
     <string name="baatman" translatable="false">https://batman.com</string>
     <string name="lotus" translatable="false">https://lotus.com</string>
+
+
+    // Practice Apps
+    <string name="tipCalc" translatable="true">Tip Calculator</string>
 </resources>
