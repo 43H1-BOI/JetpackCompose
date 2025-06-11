@@ -1,5 +1,6 @@
 package com.the43h1.jetpackcompose.A_Practice_Apps
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -38,9 +39,13 @@ import kotlin.math.roundToInt
 fun calcTipLogic(costOfService: Int, tipPercent: Int) =
     (costOfService * (tipPercent.toFloat() / 100))
 
-
 @Composable
 fun LayoutTip1() {
+    var context = LocalContext.current
+
+    var billAmount by remember {
+        mutableIntStateOf(0)
+    }
 
     var tip by remember {
         mutableFloatStateOf(0.0f)
@@ -51,7 +56,6 @@ fun LayoutTip1() {
             .statusBarsPadding()
             .fillMaxWidth()
             .padding(10.dp),
-//            .background(Color.LightGray),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -63,22 +67,25 @@ fun LayoutTip1() {
             modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth()
-//                .align(Alignment.Start)
         )
 
+
         TextField(
-            value = tip.toString(),
+            value = billAmount.toString(),
             onValueChange = {
-                tip = it.toFloat()
+                try {
+                    billAmount = it.toInt()
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(context, "Please Enter Valid Number", Toast.LENGTH_SHORT).show()
+                }
             },
             label = {
-                Text("Enter Your Tip")
+                Text("Enter Bill Amount")
             },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Decimal
+                keyboardType = KeyboardType.Number
             ),
-//            colors = TextFieldDefaults.colors(Color.Red,Color.Blue),
             modifier = Modifier
                 .padding(top = 30.dp)
 //                .border(
@@ -95,9 +102,10 @@ fun LayoutTip1() {
 
         Text(
             text =
-                if (tip != 0.0f) {
-                    "Thanks for \u20B9${tip.toString()} Tip \nMay You Got All Happiness in Your Life"
-                } else "Please Enter a Tip Amount :)",
+                if (billAmount != 0) {
+                    tip = (billAmount * 0.05).toFloat()
+                    "Thanks for \u20B9${tip} Tip \nMay You Got All Happiness in Your Life"
+                } else "Please Enter Bill Amount :)",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
@@ -107,7 +115,6 @@ fun LayoutTip1() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LayoutTip2() {
 
@@ -232,9 +239,9 @@ fun LayoutTip2() {
     }
 }
 
-
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewFun() {
-    LayoutTip2()
+    LayoutTip1()
+//    LayoutTip2()
 }

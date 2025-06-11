@@ -4,14 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
+import com.the43h1.jetpackcompose.A_Practice_Apps.PreviewFun
+
+//import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            JetpackComposeTheme {
+
 //                AccessResources()
 //                ScrollableText()
 //                EverythingCombined()
@@ -23,7 +25,8 @@ class MainActivity : ComponentActivity() {
 //                InternetImage()
 //                IconsEx()
 //                TodoApp()
-            }
+            PreviewFun()
+
         }
     }
 }
