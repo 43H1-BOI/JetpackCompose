@@ -1,5 +1,7 @@
 package com.the43h1.jetpackcompose.J_Floating_Action_Button
 
+import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -9,8 +11,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,49 +42,35 @@ fun FloatingBasics() {
             .navigationBarsPadding(),
         contentAlignment = Alignment.BottomEnd
     ) {
+
+        Button(
+            onClick = {
+                isExpanded = !isExpanded
+            },
+            modifier = Modifier
+                .padding(bottom = 500.dp)
+        ) { Text("Toggle Button") }
+
         FloatingActionButton(
             onClick = {
-                if (isExpanded) {
-                    // TODO : Fix This Piece of Code
-//                    ExtraButtons(
-//                        Icon(Icons.Default.Build, null),
-//                        Toast.makeText(context, "Build Button is Clicked", Toast.LENGTH_SHORT)
-//                            .show()
-//                    )
-                } else {
-
-                }
+                Toast.makeText(context, "Build Button is Clicked", Toast.LENGTH_SHORT)
+                    .show()
+                isExpanded = !isExpanded
             }, modifier = Modifier
                 .padding(20.dp),
-//            containerColor = TODO(),
-//            contentColor = TODO(),
-//            elevation = TODO(),
-//            interactionSource = TODO(),
             shape = CircleShape,
             content = {
-                if (isExpanded)
+                AnimatedVisibility(isExpanded) {
                     Icon(Icons.Default.Add, null)
-                else
+                }
+                AnimatedVisibility(!isExpanded) {
                     Icon(Icons.Default.Close, null)
+                }
             }
         )
     }
 }
 
-@Composable
-fun ExtraButtons(content: () -> Unit, onClick: () -> Unit) {
-    FloatingActionButton(
-        onClick = {
-            onClick
-        },
-        modifier = Modifier
-            .padding(20.dp),
-        shape = CircleShape,
-        content = {
-            content
-        }
-    )
-}
 
 @Preview(showSystemUi = true)
 @Composable
