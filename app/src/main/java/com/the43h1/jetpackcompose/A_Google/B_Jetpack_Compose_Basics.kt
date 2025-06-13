@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,7 +32,7 @@ import com.the43h1.jetpackcompose.R
 
 @Composable
 fun MainApp() {
-    var isContinued = remember {
+    var isContinued = rememberSaveable {
         mutableStateOf(false)
     }
 
