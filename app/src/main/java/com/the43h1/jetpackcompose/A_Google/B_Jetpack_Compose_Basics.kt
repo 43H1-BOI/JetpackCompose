@@ -129,7 +129,9 @@ fun TextLayout(text: String) {
             fontSize = 20.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier
-                .align(Alignment.CenterVertically)
+                .align(Alignment.CenterVertically),
+            // Added Material Theme typography
+            style = MaterialTheme.typography.bodyMedium
         )
         Button(
             onClick = {
