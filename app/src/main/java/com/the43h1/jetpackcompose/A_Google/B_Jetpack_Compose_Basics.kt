@@ -110,9 +110,10 @@ fun TextLayout(text: String) {
     }
 
     // Hoisting this
-    var newPadding =
+    var newPadding = animateDpAsState(
         if (!isShowing.value) 10.dp
-        else 35.dp
+        else 45.dp
+    )
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
