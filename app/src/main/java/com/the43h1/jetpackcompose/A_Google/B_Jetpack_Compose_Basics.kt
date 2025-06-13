@@ -105,7 +105,7 @@ fun MainScreen() {
 
 @Composable
 fun TextLayout(text: String) {
-    var isShowing = remember {
+    var isShowing = rememberSaveable {
         mutableStateOf(false)
     }
 
