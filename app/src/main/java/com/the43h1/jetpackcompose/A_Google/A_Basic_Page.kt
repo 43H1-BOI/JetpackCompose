@@ -66,8 +66,6 @@ fun MainPage(
             text = message2,
             modifier = Modifier.padding(16.dp),
             textAlign = TextAlign.Justify
-
-
         )
     }
 }

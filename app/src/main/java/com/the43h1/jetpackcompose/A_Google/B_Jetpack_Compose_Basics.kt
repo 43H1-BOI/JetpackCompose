@@ -1,5 +1,7 @@
 package com.the43h1.jetpackcompose.A_Google
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +20,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -121,7 +122,7 @@ fun TextLayout(text: String) {
         modifier = Modifier
             .fillMaxWidth()
             .background(color = Color(red = 0, green = 104, blue = 143))
-            .padding(top = 10.dp, bottom = newPadding)
+            .padding(top = 10.dp, bottom = newPadding.value)
     ) {
         Text(
             text,
@@ -138,22 +139,20 @@ fun TextLayout(text: String) {
                 isShowing.value = !isShowing.value
             }, colors = ButtonDefaults.buttonColors(Color.White)
         ) {
-            if (!isShowing.value)
-                Text(
-                    "Show More",
-                    color = colorResource(R.color.my_light_primary),
-                    fontWeight = FontWeight.SemiBold
-                )
-            else
-                Text(
-                    "Show Less",
-                    color = colorResource(R.color.my_light_primary),
-                    fontWeight = FontWeight.SemiBold
-                )
+            Text(
+                if (!isShowing.value) "Show More" else "Show Less",
+                color = colorResource(R.color.my_light_primary),
+                fontWeight = FontWeight.SemiBold
+            )
         }
     }
 }
 
+@Preview(
+    showBackground = true,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "GreetingPreviewDark"
+)
 @Preview(showSystemUi = true)
 @Composable
 fun BasicLayoutPreview() {

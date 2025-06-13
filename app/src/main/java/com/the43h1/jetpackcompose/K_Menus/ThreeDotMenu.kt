@@ -8,22 +8,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -56,7 +54,7 @@ fun ThreeDotMenuEx() {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.End,
             modifier = Modifier
-            .fillMaxWidth()
+                .fillMaxWidth()
 //                .padding(20.dp)
                 .statusBarsPadding()
                 .navigationBarsPadding()
@@ -78,9 +76,9 @@ fun ThreeDotMenuEx() {
                     isEnabled = false
                 },
                 expanded = isEnabled,
-                offset = DpOffset(155.dp,0.dp),
+                offset = DpOffset(155.dp, 0.dp),
                 modifier = Modifier
-                .align(Alignment.End)
+                    .align(Alignment.End)
             ) {
                 DropdownMenuItem(
                     text = {
@@ -145,8 +143,35 @@ fun ThreeDotMenuEx() {
     }
 }
 
+@Composable
+fun MinimalDropdownMenu() {
+    var expanded by remember { mutableStateOf(false) }
+    Box(
+        modifier = Modifier
+            .padding(16.dp)
+    ) {
+        IconButton(onClick = { expanded = !expanded }) {
+            Icon(Icons.Default.MoreVert, contentDescription = "More options")
+        }
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            DropdownMenuItem(
+                text = { Text("Option 1") },
+                onClick = { /* Do something... */ }
+            )
+            DropdownMenuItem(
+                text = { Text("Option 2") },
+                onClick = { /* Do something... */ }
+            )
+        }
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun ThreeDotMenuPreview() {
     ThreeDotMenuEx()
+//    MinimalDropdownMenu()
 }
