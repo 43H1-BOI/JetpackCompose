@@ -4,15 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.G_Check_Box.TodoApp
-
-//import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
+import com.the43h1.jetpackcompose.A_Google.MainApp
+import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            JetpackComposeTheme {
 
 //                AccessResources()
 //                ScrollableText()
@@ -27,7 +27,10 @@ class MainActivity : ComponentActivity() {
 //            TodoApp()
 //            PreviewFun()
 //            PhotoAppLayout()
-
+//                FloatingBasics()
+//                ThreeDotMenuEx()
+                MainApp()
+            }
         }
     }
 }

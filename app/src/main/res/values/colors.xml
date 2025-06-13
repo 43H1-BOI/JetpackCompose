@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mera_color">#8D2DEF</color>
 
+    <color name="my_light_primary">#00688f</color>
+
     <color name="violet">#9400D3</color>
     <color name="indigo">#480082</color>
     <color name="blue">#0000FF</color>
