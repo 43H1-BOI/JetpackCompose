@@ -75,8 +75,11 @@ fun ScaffoldB() {
             modifier = Modifier.padding(contentPadding)
         ) {
             items(100) {
-                Text("This is Text ${it + 1}", fontSize = 20.sp, modifier = modifier)
-//                Spacer(Modifier.size(10.dp))
+                Text(
+                    text = ((if(!isFav) "Me Not " else "") + "Love You"),
+                    fontSize = 20.sp,
+                    modifier = modifier
+                )
             }
         }
     }
