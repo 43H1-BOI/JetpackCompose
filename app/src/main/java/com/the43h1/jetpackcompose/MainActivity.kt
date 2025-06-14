@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.A_Google.MainApp
+import com.the43h1.jetpackcompose.L_Scaffold.ScaffoldLayout
 import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +29,8 @@ class MainActivity : ComponentActivity() {
 //            PhotoAppLayout()
 //                FloatingBasics()
 //                ThreeDotMenuEx()
-                MainApp()
+//                MainApp()
+                ScaffoldLayout()
             }
         }
     }
