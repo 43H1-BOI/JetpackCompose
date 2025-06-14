@@ -254,7 +254,7 @@ fun TopBar(onOpenDrawer: () -> Unit, modifier: Modifier = Modifier) {
 @Composable
 fun MainScreen() {
     var drawerState = rememberDrawerState(
-        initialValue = DrawerValue.Open
+        initialValue = DrawerValue.Closed
     )
 
     var scope = rememberCoroutineScope()
