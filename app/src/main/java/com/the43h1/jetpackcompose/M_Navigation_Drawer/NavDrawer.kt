@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -43,7 +42,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,6 +50,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
+// Screen Content Composable
 fun ScreenContent(paddingValue: PaddingValues) {
     Box(
         modifier = Modifier
@@ -80,6 +79,7 @@ fun ScreenContent(paddingValue: PaddingValues) {
 }
 
 @Composable
+// Drawer Content Composable
 fun DrawerContent(modifier: Modifier = Modifier) {
     Column() {
         Row(
@@ -148,7 +148,9 @@ fun DrawerContent(modifier: Modifier = Modifier) {
 
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Icon(
                 Icons.Default.Email, "Inbox",
@@ -202,6 +204,7 @@ fun DrawerContent(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+// Top App Bar Content Composable
 fun TopBar(onOpenDrawer: () -> Unit, modifier: Modifier = Modifier) {
     TopAppBar(
         navigationIcon = {
@@ -252,6 +255,7 @@ fun TopBar(onOpenDrawer: () -> Unit, modifier: Modifier = Modifier) {
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
+// Final Screen Composable
 fun MainScreen() {
     var drawerState = rememberDrawerState(
         initialValue = DrawerValue.Closed
@@ -269,15 +273,21 @@ fun MainScreen() {
     ) {
         Scaffold(
             topBar = {
-                TopBar(onOpenDrawer = {
-                    scope.launch {
-                        drawerState.apply {
-                            if (isClosed) open() else close()
+                TopBar(
+                    onOpenDrawer = {
+                        scope.launch {
+                            drawerState.apply {
+                                if (isClosed) open() else close()
+                            }
+                            //      OR
+//                            if (drawerState.isClosed)
+//                                drawerState.open()
+//                            else
+//                                drawerState.close()
                         }
                     }
-                })
+                )
             }
-
         ) { paddingValue ->
             ScreenContent(paddingValue)
         }
