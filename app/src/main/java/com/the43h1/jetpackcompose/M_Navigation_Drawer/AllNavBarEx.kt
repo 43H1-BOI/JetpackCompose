@@ -174,19 +174,23 @@ fun BottomBar() {
             )
 
 
-            NavButtons(
-                isSelected = allStates[2],
-                onClick = {
-                    if (!allStates[2]) {
-                        allStates.forEachIndexed { idx, _ ->
-                            allStates[idx] = false
-                        }
-                        allStates[2] = true
+            FloatingActionButton(onClick = {
+                if (!allStates[2]) {
+                    allStates.forEachIndexed { idx, _ ->
+                        allStates[idx] = false
                     }
-                }, icon = Icons.Default.Add,
-                iconDescription = "New Chat",
-                modifier = Modifier.size(30.dp)
-            )
+                    allStates[2] = true
+                }
+            }
+            ) {
+                NavButtons(
+                    isSelected = allStates[2],
+                    onClick = {/*Don't Fill This as its all action are set on the Floating Action Button*/ },
+                    icon = Icons.Default.Add,
+                    iconDescription = "New Chat",
+                    modifier = Modifier.size(30.dp)
+                )
+            }
 
 
             NavButtons(
