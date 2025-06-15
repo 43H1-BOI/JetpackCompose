@@ -26,6 +26,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -109,7 +112,8 @@ fun NavButtons(
     onClick: () -> Unit,
     icon: ImageVector,
     iconDescription: String?,
-    modifier: Modifier
+    modifier: Modifier,
+    otherState: MutableState<Boolean>
 ) {
     IconButton(
         onClick = {
@@ -135,6 +139,9 @@ fun BottomBar(
         Icons.Default.Person to "Profile",
     )
 ) {
+
+    var otherState = remember { mutableStateOf(false) }
+
     BottomAppBar(containerColor = MaterialTheme.colorScheme.inversePrimary) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -143,57 +150,26 @@ fun BottomBar(
                 .fillMaxWidth()
                 .height(60.dp)
         ) {
+            iconsList.forEach { item ->
+                var isEnabled = remember {
+                    mutableStateOf(false)
+                }
 
-            NavButtons(
-                isEnabled = true,
-                onClick = {
+                NavButtons(
+                    isEnabled = isEnabled.value,
+                    otherState = otherState,
+                    onClick = {
+                        if (!otherState.value) {
+                            isEnabled.value = !isEnabled.value
+                            otherState.value = !otherState.value
+                        } else{
 
-                }, icon = Icons.Default.Home,
-                iconDescription = "Home",
-                modifier = Modifier.size(30.dp)
-            )
-
-
-            NavButtons(
-                isEnabled = true,
-                onClick = {
-
-                }, icon = Icons.Default.Home,
-                iconDescription = "Home",
-                modifier = Modifier.size(30.dp)
-            )
-
-
-            NavButtons(
-                isEnabled = true,
-                onClick = {
-
-                }, icon = Icons.Default.Home,
-                iconDescription = "Home",
-                modifier = Modifier.size(30.dp)
-            )
-
-
-            NavButtons(
-                isEnabled = true,
-                onClick = {
-
-                }, icon = Icons.Default.Home,
-                iconDescription = "Home",
-                modifier = Modifier.size(30.dp)
-            )
-
-
-            NavButtons(
-                isEnabled = true,
-                onClick = {
-
-                }, icon = Icons.Default.Home,
-                iconDescription = "Home",
-                modifier = Modifier.size(30.dp)
-            )
-
-
+                        }
+                    }, icon = item.key,
+                    iconDescription = item.value,
+                    modifier = Modifier.size(30.dp)
+                )
+            }
         }
     }
 }
