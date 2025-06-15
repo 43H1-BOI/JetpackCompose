@@ -130,17 +130,10 @@ fun NavButtons(
 }
 
 @Composable
-fun BottomBar(
-    iconsList: Map<ImageVector, String?> = mapOf(
-        Icons.Default.Home to "Home",
-        Icons.Default.Search to "Search",
-        Icons.Default.Add to "New Chat",
-        Icons.Default.Notifications to "Notifications",
-        Icons.Default.Person to "Profile",
-    )
-) {
-
-    var otherState = remember { mutableStateOf(false) }
+fun BottomBar() {
+    var allStates: MutableList<Boolean> = remember {
+        mutableStateListOf(true, false, false, false, false)
+    }
 
     BottomAppBar(containerColor = MaterialTheme.colorScheme.inversePrimary) {
         Row(
@@ -150,26 +143,81 @@ fun BottomBar(
                 .fillMaxWidth()
                 .height(60.dp)
         ) {
-            iconsList.forEach { item ->
-                var isEnabled = remember {
-                    mutableStateOf(false)
-                }
 
-                NavButtons(
-                    isEnabled = isEnabled.value,
-                    otherState = otherState,
-                    onClick = {
-                        if (!otherState.value) {
-                            isEnabled.value = !isEnabled.value
-                            otherState.value = !otherState.value
-                        } else{
-
+            NavButtons(
+                isSelected = allStates[0],
+                onClick = {
+                    if (!allStates[0]) {
+                        allStates.forEachIndexed { idx, _ ->
+                            allStates[idx] = false
                         }
-                    }, icon = item.key,
-                    iconDescription = item.value,
-                    modifier = Modifier.size(30.dp)
-                )
-            }
+                        allStates[0] = true
+                    }
+                }, icon = Icons.Default.Home,
+                iconDescription = "Home",
+                modifier = Modifier.size(30.dp)
+            )
+
+
+            NavButtons(
+                isSelected = allStates[1],
+                onClick = {
+                    if (!allStates[1]) {
+                        allStates.forEachIndexed { idx, _ ->
+                            allStates[idx] = false
+                        }
+                        allStates[1] = true
+                    }
+                }, icon = Icons.Default.Search,
+                iconDescription = "Search",
+                modifier = Modifier.size(30.dp)
+            )
+
+
+            NavButtons(
+                isSelected = allStates[2],
+                onClick = {
+                    if (!allStates[2]) {
+                        allStates.forEachIndexed { idx, _ ->
+                            allStates[idx] = false
+                        }
+                        allStates[2] = true
+                    }
+                }, icon = Icons.Default.Add,
+                iconDescription = "New Chat",
+                modifier = Modifier.size(30.dp)
+            )
+
+
+            NavButtons(
+                isSelected = allStates[3],
+                onClick = {
+                    if (!allStates[3]) {
+                        allStates.forEachIndexed { idx, _ ->
+                            allStates[idx] = false
+                        }
+                        allStates[3] = true
+                    }
+                }, icon = Icons.Default.Notifications,
+                iconDescription = "Notifications",
+                modifier = Modifier.size(30.dp)
+            )
+
+
+            NavButtons(
+                isSelected = allStates[4],
+                onClick = {
+                    if (!allStates[4]) {
+                        allStates.forEachIndexed { idx, _ ->
+                            allStates[idx] = false
+                        }
+                        allStates[4] = true
+                    }
+                }, icon = Icons.Default.Person,
+                iconDescription = "Profile",
+                modifier = Modifier.size(30.dp)
+            )
+
         }
     }
 }
