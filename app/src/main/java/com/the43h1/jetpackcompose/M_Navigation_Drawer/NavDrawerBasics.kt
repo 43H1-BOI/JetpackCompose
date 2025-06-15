@@ -24,6 +24,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -33,6 +34,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,7 +49,7 @@ fun DrawerBasic(modifier: Modifier = Modifier) {
     var scope = rememberCoroutineScope()
 
     var drawerState = rememberDrawerState(
-        initialValue = DrawerValue.Closed
+        initialValue = DrawerValue.Open
     )
 
     ModalNavigationDrawer(
@@ -131,6 +133,26 @@ fun DrawerBasic(modifier: Modifier = Modifier) {
 //                                .align(Alignment.CenterVertically)
                         )
                     }
+
+                    HorizontalDivider()
+
+                    NavigationDrawerItem(
+                        label = {
+                            Text(
+                                "Clickable Text",
+                                fontSize = 20.sp,
+                                color = Color.Black,
+                                fontWeight = FontWeight.SemiBold,
+                                modifier = Modifier
+                                    .padding(start = 0.dp, top = 8.dp, bottom = 10.dp)
+                            )
+                        },
+                        selected = false,
+                        onClick = {
+                            println("Button Clicked")
+                        }
+                    )
+
                 }
             }
         },
@@ -174,7 +196,7 @@ fun DrawerBasic(modifier: Modifier = Modifier) {
                     }
                 )
             }
-            ) { screenPadding ->
+        ) { screenPadding ->
             LazyColumn(
                 modifier = Modifier
                     .padding(screenPadding)

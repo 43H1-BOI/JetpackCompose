@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PartialBottomSheet() {
-
     var bottomSheetState by remember {
         mutableStateOf(false)
     }
