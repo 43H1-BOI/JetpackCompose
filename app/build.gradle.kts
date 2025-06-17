@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+
 android {
     namespace = "com.the43h1.jetpackcompose"
     compileSdk = 35
@@ -31,6 +32,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }
+
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -58,6 +64,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 //    implementation("androidx.compose.material:material:")
+    implementation(libs.androidx.material3)
 
 
     implementation(libs.androidx.constraintlayout)
@@ -68,3 +75,5 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
 }
+
+

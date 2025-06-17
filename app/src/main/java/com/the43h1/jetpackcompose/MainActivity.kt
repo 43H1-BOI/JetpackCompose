@@ -1,10 +1,11 @@
 package com.the43h1.jetpackcompose
 
+//import com.the43h1.jetpackcompose.M_Navigation_Drawer.NavBottomDrawer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.M_Navigation_Drawer.NavBottomDrawer
+import com.the43h1.jetpackcompose.A_Practice_Apps.MainApp
 import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +34,9 @@ class MainActivity : ComponentActivity() {
 //                ScaffoldLayout()
 //                MainScreen()
 //                DrawerBasic()
-                NavBottomDrawer()
+//                NavBottomDrawer()
+                MainApp()
+//                DrawerPrev()
             }
         }
     }

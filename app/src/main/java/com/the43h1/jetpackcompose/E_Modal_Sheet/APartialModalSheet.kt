@@ -1,8 +1,6 @@
 package com.the43h1.jetpackcompose.E_Modal_Sheet
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -65,7 +63,6 @@ fun PartialBottomSheet() {
 
     }
 }
-
 
 @Preview(showSystemUi = true)
 @Composable

@@ -51,7 +51,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 // Screen Content Composable
-fun ScreenContent(paddingValue: PaddingValues) {
+fun ScreenContent(
+    paddingValue: PaddingValues, // Scaffold Padding Values
+    color: Color = colorResource(R.color.skyBlue), // Color for Box
+    text: String? = null // Text Inside Box
+) {
     Box(
         modifier = Modifier
             .padding(paddingValue)
@@ -64,14 +68,20 @@ fun ScreenContent(paddingValue: PaddingValues) {
         ) {
             items(8) {
                 Box(
+                    contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .clip(RoundedCornerShape(25.dp))
-                        .background(
-                            colorResource(R.color.skyBlue)
-                        )
+                        .background(color = color)
                         .fillMaxWidth()
                         .height(200.dp)
-                ) {}
+                ) {
+                    Text(
+                        text ?: "None",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color.Black
+                    )
+                }
             }
         }
 
@@ -80,7 +90,7 @@ fun ScreenContent(paddingValue: PaddingValues) {
 
 @Composable
 // Drawer Content Composable
-fun DrawerContent(modifier: Modifier = Modifier) {
+private fun DrawerContent(modifier: Modifier = Modifier) {
     Column() {
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -205,7 +215,7 @@ fun DrawerContent(modifier: Modifier = Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 // Top App Bar Content Composable
-fun TopBar(onOpenDrawer: () -> Unit, modifier: Modifier = Modifier) {
+private fun TopBar(onOpenDrawer: () -> Unit, modifier: Modifier = Modifier) {
     TopAppBar(
         navigationIcon = {
             Icon(
@@ -256,7 +266,7 @@ fun TopBar(onOpenDrawer: () -> Unit, modifier: Modifier = Modifier) {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 // Final Screen Composable
-fun MainScreen() {
+private fun MainScreen() {
     var drawerState = rememberDrawerState(
         initialValue = DrawerValue.Closed
     )
