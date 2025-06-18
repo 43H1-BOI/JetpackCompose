@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CircleLoading() {
+fun LinearLoading() {
     var inProgress by remember {
         mutableStateOf(true)
     }
@@ -44,10 +44,10 @@ fun CircleLoading() {
             }
 
             if (inProgress) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(64.dp),
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    trackColor = MaterialTheme.colorScheme.primary
+                LinearProgressIndicator(
+                    modifier = Modifier.width(200.dp),
+                    color = MaterialTheme.colorScheme.primary,
+                    trackColor = MaterialTheme.colorScheme.onPrimary
                 )
             }
 
@@ -65,6 +65,6 @@ fun CircleLoading() {
 
 @Preview(showSystemUi = true)
 @Composable
-fun CirclePreview() {
-    CircleLoading()
+fun LinearPreview() {
+    LinearLoading()
 }
