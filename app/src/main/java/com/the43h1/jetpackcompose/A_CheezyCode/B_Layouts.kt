@@ -1,6 +1,7 @@
 package com.the43h1.jetpackcompose.A_CheezyCode
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -103,18 +105,18 @@ fun ContactCard(imgId: Int, imgDesc: String?, name: String, occupation: String) 
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
             modifier = Modifier
+                .background(color = Color.LightGray, shape = RectangleShape)
                 .fillMaxWidth()
-                .height(80.dp)
                 .padding(8.dp)
-//                .background(color = Color.LightGray, shape = RectangleShape)
+//                .height(80.dp)
         ) {
             // Image of Contact
             Image(
                 painter = painterResource(imgId),
                 contentDescription = imgDesc,
                 modifier = Modifier
-                    .clip(CircleShape)
-                    .size(45.dp),
+                    .size(45.dp)
+                    .clip(CircleShape),
                 contentScale = ContentScale.Crop,
                 alignment = Alignment.Center
             )
