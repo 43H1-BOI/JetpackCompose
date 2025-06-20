@@ -41,7 +41,7 @@ fun CardView(
 
         ) {
             Image(
-                painter = painterResource(imgId),
+                imageVector = Icons.Filled.Person,
                 contentDescription = imgDesc,
                 contentScale = ContentScale.Companion.Fit,
                 modifier = Modifier.Companion
