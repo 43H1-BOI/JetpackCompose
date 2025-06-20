@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.A_Practice_Apps.MainApp
+import com.the43h1.jetpackcompose.A_Practice_Apps.QuotesApp_6.MainQuotesApp
 import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
 //                MainScreen()
 //                DrawerBasic()
 //                NavBottomDrawer()
-                MainApp()
+                MainQuotesApp()
 //                DrawerPrev()
             }
         }
