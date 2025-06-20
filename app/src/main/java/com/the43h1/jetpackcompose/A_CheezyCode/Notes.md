@@ -35,3 +35,11 @@
 		
 	- We Can Also Create our Own Modifier Properties	
     - It is Referred as Best Practice to add Modifier in Your Composable
+
+
+# Video 4 : Column Lists
+
+	- We use lazy column / row to make them scrollable
+	- Also we Can Use modifier property like 
+		- verticalscroll
+		- horizontalscroll
