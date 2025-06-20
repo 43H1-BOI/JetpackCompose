@@ -118,4 +118,23 @@ fun PreviewBlog() {
             }
         }
     }
+    */
+
+    val itemsList = remember { getCategoryItems() }
+
+    LazyColumn {
+        items(itemsList.count()) { index ->
+            val eachItem = itemsList[index]
+            BlogContent(
+                imgId = eachItem.imgId,
+                imgDesc = eachItem.imgDesc,
+                title = eachItem.title,
+                subtitle = eachItem.subtitle,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            )
+        }
+    }
+
 }
