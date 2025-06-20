@@ -1,12 +1,13 @@
-package com.the43h1.jetpackcompose.A_Practice_Apps.QuotesApp
+package com.the43h1.jetpackcompose.A_Practice_Apps.QuotesApp_6
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -18,10 +19,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.the43h1.jetpackcompose.R
 
 @Composable
 fun CardView(
@@ -29,7 +28,7 @@ fun CardView(
     imgDesc: String? = null,
     quote: String,
     author: String,
-    modifier: Modifier = Modifier
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.Companion
 ) {
     Card(
         modifier = modifier
@@ -37,18 +36,18 @@ fun CardView(
             .fillMaxWidth()
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.Companion.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
 
         ) {
             Image(
                 painter = painterResource(imgId),
                 contentDescription = imgDesc,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
+                contentScale = ContentScale.Companion.Fit,
+                modifier = Modifier.Companion
                     .padding(5.dp)
                     .clip(CircleShape)
-                    .weight(0.2f)
+                    .size(70.dp)
             )
 
             QuoteTexts(quote, author)
@@ -57,49 +56,36 @@ fun CardView(
 }
 
 @Composable
-private fun RowScope.QuoteTexts(
+internal fun QuoteTexts(
     quote: String,
-    author: String
+    author: String,
+    modifier: Modifier = Modifier.Companion
 ) {
     Column(
-        modifier = Modifier
-            .weight(0.8f)
+        modifier = modifier
     ) {
         Text(
             text = quote,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Companion.SemiBold,
             fontSize = 20.sp,
-            modifier = Modifier
+            textAlign = TextAlign.Companion.Left,
+            modifier = Modifier.Companion
                 .fillMaxWidth()
                 .padding(
-                    top = 3.dp,
-                    bottom = 2.dp
+                    5.dp
                 )
         )
 
         Text(
             text = "- $author",
-            fontWeight = FontWeight.Light,
+            fontWeight = FontWeight.Companion.Light,
             fontSize = 20.sp,
-            textAlign = TextAlign.End,
-            modifier = Modifier
+            textAlign = TextAlign.Companion.End,
+            modifier = Modifier.Companion
                 .fillMaxWidth()
                 .padding(
-                    top = 2.dp,
-                    end = 5.dp,
-                    bottom = 3.dp
+                    5.dp
                 )
         )
     }
-}
-
-@Preview
-@Composable
-private fun PrevQuotes() {
-    CardView(
-        R.drawable.pfp_40_super,
-        "SpiderMan with his GF",
-        "With Great Powers , Comes Great Resposibilities",
-        "Peter Parker"
-    )
 }

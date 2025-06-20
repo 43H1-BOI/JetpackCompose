@@ -16,7 +16,7 @@
     <string name="lotus" translatable="false">https://lotus.com</string>
 
 
-    // Practice Apps
+    <!--    // Practice Apps-->
     <string name="tipCalc" translatable="true">Tip Calculator</string>
 
 
@@ -65,5 +65,9 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+
+    <!--    // Quotes App-->
+    <string name="quotesApp" translatable="false">Daily Quotes</string>
 
 </resources>
