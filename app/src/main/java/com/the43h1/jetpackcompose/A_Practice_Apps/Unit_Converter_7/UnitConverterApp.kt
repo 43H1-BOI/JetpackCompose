@@ -33,17 +33,23 @@ import androidx.compose.ui.unit.sp
 @Preview(showSystemUi = true)
 @Composable
 fun UnitConv() {
+
+    // All Important Variables
+    // For UserInput Values
     var userInput by remember { mutableStateOf("0".toInt()) }
 
+    // For DropDown States
     var drawer1 by remember { mutableStateOf(false) }
     var drawer2 by remember { mutableStateOf(false) }
 
+    // For Units Stored in Variables
     var inputUnit by remember { mutableStateOf(Units.Centimeter) }
     var outputUnit by remember { mutableStateOf(Units.Meter) }
 
-    var result = 0.0
-
-
+    // For Result
+    var result by remember {
+        mutableStateOf(0.0)
+    }
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -74,11 +80,7 @@ fun UnitConv() {
                     "null + ${e.message}"
                 },
                 onValueChange = {
-                    userInput = try {
-                        it.toInt()
-                    } catch (e: NumberFormatException) {
-                        0
-                    }
+                    userInput = it.toInt()
                 }, modifier = Modifier
                     .fillMaxWidth(0.7f)
             )
@@ -87,11 +89,15 @@ fun UnitConv() {
 
             Button(
                 onClick = {
-                    result = convert(
-                        inputUnit = inputUnit,
-                        outputUnit = outputUnit,
-                        inputValue = userInput
-                    )
+                    result = try {
+                        convert(
+                            inputUnit = inputUnit,
+                            outputUnit = outputUnit,
+                            inputValue = userInput
+                        )
+                    } catch (_: NumberFormatException) {
+                        0.0
+                    }
                 },
             ) { Text("Convert") }
         }
@@ -109,7 +115,7 @@ fun UnitConv() {
                     drawerState = drawer1,
                     onClickButton = { drawer1 = true },
                     onDismissDD = { drawer1 = false },
-                    currentUnit = Units.Centimeter,
+                    currentUnit = inputUnit,
                     selectedUnit = { inputUnit = it },
                 )
             }
@@ -121,21 +127,19 @@ fun UnitConv() {
                     drawerState = drawer2,
                     onClickButton = { drawer2 = true },
                     onDismissDD = { drawer2 = false },
-                    currentUnit = Units.Meter,
+                    currentUnit = outputUnit,
                     selectedUnit = { outputUnit = it },
                 )
             }
         }
 
-        if (result != 0.0) {
-            Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                "Result : $result",
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 20.sp
-            )
-        }
+        Text(
+            "Result : $result",
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp
+        )
     }
 }
 
@@ -199,39 +203,37 @@ fun convert(inputUnit: Units, outputUnit: Units, inputValue: Int): Double {
     return when (inputUnit) {
         Units.Millimeter ->
             when (outputUnit) {
-                Units.Millimeter -> inputValue.toDouble()
-                Units.Centimeter -> (inputValue / 10).toDouble()
-                Units.Meter -> (inputValue / 100).toDouble()
-                Units.Kilometer -> (inputValue / 1000).toDouble()
-                Units.Millimeter -> inputValue.toDouble()
-            }
+                Units.Millimeter -> inputValue
+                Units.Centimeter -> (inputValue.toDouble() / 10)
+                Units.Meter -> (inputValue.toDouble() / 1000)
+                Units.Kilometer -> (inputValue.toDouble() / 1000000)
+            }.toDouble()
 
         Units.Centimeter ->
             when (outputUnit) {
-                Units.Millimeter -> (inputValue * 10).toDouble()
-                Units.Centimeter -> inputValue.toDouble()
-                Units.Meter -> (inputValue / 10).toDouble()
-                Units.Kilometer -> (inputValue / 100).toDouble()
-            }
+                Units.Millimeter -> (inputValue * 10)
+                Units.Centimeter -> inputValue
+                Units.Meter -> (inputValue.toDouble() / 100)
+                Units.Kilometer -> (inputValue.toDouble() / 100000)
+            }.toDouble()
 
         Units.Meter ->
             when (outputUnit) {
-                Units.Millimeter -> (inputValue * 100).toDouble()
-                Units.Centimeter -> (inputValue * 10).toDouble()
-                Units.Meter -> inputValue.toDouble()
-                Units.Kilometer -> (inputValue / 10).toDouble()
-            }
+                Units.Millimeter -> (inputValue * 1000)
+                Units.Centimeter -> (inputValue * 100)
+                Units.Meter -> inputValue
+                Units.Kilometer -> (inputValue.toDouble() / 1000)
+            }.toDouble()
 
         Units.Kilometer ->
             when (outputUnit) {
-                Units.Millimeter -> (inputValue * 1000).toDouble()
-                Units.Centimeter -> (inputValue * 100).toDouble()
-                Units.Meter -> (inputValue * 10).toDouble()
-                Units.Kilometer -> inputValue.toDouble()
-            }
+                Units.Millimeter -> (inputValue * 1000000)
+                Units.Centimeter -> (inputValue * 100000)
+                Units.Meter -> (inputValue * 1000)
+                Units.Kilometer -> inputValue
+            }.toDouble()
     }
 }
-
 
 enum class Units() {
     Millimeter,
