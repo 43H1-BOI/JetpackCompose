@@ -133,13 +133,15 @@ fun UnitConv() {
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        if (isConverted) {
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
-            "Result : $result",
-            fontWeight = FontWeight.SemiBold,
-            fontSize = 20.sp
-        )
+            Text(
+                "Result : $result",
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 20.sp
+            )
+        }
     }
 }
 
