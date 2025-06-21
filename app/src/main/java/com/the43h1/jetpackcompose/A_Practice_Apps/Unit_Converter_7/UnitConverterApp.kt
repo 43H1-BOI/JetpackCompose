@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
@@ -25,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
@@ -36,7 +40,7 @@ fun UnitConv() {
 
     // All Important Variables
     // For UserInput Values
-    var userInput by remember { mutableStateOf("0".toInt()) }
+    var userInput by remember { mutableStateOf("") }
 
     // For DropDown States
     var drawer1 by remember { mutableStateOf(false) }
@@ -51,12 +55,19 @@ fun UnitConv() {
         mutableStateOf(0.0)
     }
 
+    // Flag for converted Value
+    var isConverted by remember {
+        mutableStateOf(false)
+    }
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp, top = 50.dp)
+            .statusBarsPadding()
+            .navigationBarsPadding()
+            .padding(1.dp)
     ) {
         Text(
             text = "Unit Converter App",
@@ -72,16 +83,15 @@ fun UnitConv() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             OutlinedTextField(
-                value = try {
-                    userInput.toString()
-                } catch (_: NumberFormatException) {
-                    "0"
-                } catch (e: Exception) {
-                    "null + ${e.message}"
+                value = userInput,
+                label = {
+                    Text("Enter a Value")
                 },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 onValueChange = {
-                    userInput = it.toInt()
-                }, modifier = Modifier
+                    userInput = it
+                },
+                modifier = Modifier
                     .fillMaxWidth(0.7f)
             )
 
@@ -89,15 +99,14 @@ fun UnitConv() {
 
             Button(
                 onClick = {
-                    result = try {
+                    result =
                         convert(
                             inputUnit = inputUnit,
                             outputUnit = outputUnit,
-                            inputValue = userInput
+                            inputValue = userInput.toDoubleOrNull() ?: 0.0
                         )
-                    } catch (_: NumberFormatException) {
-                        0.0
-                    }
+
+                    isConverted = true
                 },
             ) { Text("Convert") }
         }
@@ -110,7 +119,11 @@ fun UnitConv() {
             modifier = Modifier.fillMaxWidth()
         ) {
 
-            Box(modifier = Modifier.weight(1f)) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .weight(1f)
+            ) {
                 UnitSelectionButton(
                     drawerState = drawer1,
                     onClickButton = { drawer1 = true },
@@ -122,7 +135,10 @@ fun UnitConv() {
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Box(modifier = Modifier.weight(1f)) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.weight(1f)
+            ) {
                 UnitSelectionButton(
                     drawerState = drawer2,
                     onClickButton = { drawer2 = true },
@@ -156,7 +172,6 @@ private fun UnitSelectionButton(
     Button(
         onClick = { onClickButton() },
         modifier = Modifier
-//            .align(Alignment.Center)
             .fillMaxWidth(0.8f)
     ) {
         Text(currentUnit.toString(), fontSize = 14.sp)
@@ -201,22 +216,22 @@ private fun UnitSelectionButton(
     }
 }
 
-fun convert(inputUnit: Units, outputUnit: Units, inputValue: Int): Double {
+fun convert(inputUnit: Units, outputUnit: Units, inputValue: Double): Double {
     return when (inputUnit) {
         Units.Millimeter ->
             when (outputUnit) {
                 Units.Millimeter -> inputValue
-                Units.Centimeter -> (inputValue.toDouble() / 10)
-                Units.Meter -> (inputValue.toDouble() / 1000)
-                Units.Kilometer -> (inputValue.toDouble() / 1000000)
+                Units.Centimeter -> (inputValue / 10)
+                Units.Meter -> (inputValue / 1000)
+                Units.Kilometer -> (inputValue / 1000000)
             }.toDouble()
 
         Units.Centimeter ->
             when (outputUnit) {
                 Units.Millimeter -> (inputValue * 10)
                 Units.Centimeter -> inputValue
-                Units.Meter -> (inputValue.toDouble() / 100)
-                Units.Kilometer -> (inputValue.toDouble() / 100000)
+                Units.Meter -> (inputValue / 100)
+                Units.Kilometer -> (inputValue / 100000)
             }.toDouble()
 
         Units.Meter ->
@@ -224,7 +239,7 @@ fun convert(inputUnit: Units, outputUnit: Units, inputValue: Int): Double {
                 Units.Millimeter -> (inputValue * 1000)
                 Units.Centimeter -> (inputValue * 100)
                 Units.Meter -> inputValue
-                Units.Kilometer -> (inputValue.toDouble() / 1000)
+                Units.Kilometer -> (inputValue / 1000)
             }.toDouble()
 
         Units.Kilometer ->
