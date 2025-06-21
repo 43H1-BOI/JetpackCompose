@@ -105,102 +105,25 @@ fun UnitConv() {
         ) {
 
             Box(modifier = Modifier.weight(1f)) {
-                Button(
-                    onClick = { drawer1 = true }, modifier = Modifier
-                        .align(Alignment.Center)
-                        .fillMaxWidth(0.8f)
-                ) {
-                    Text(inputUnit.toString(), fontSize = 14.sp)
-                    Icon(Icons.Default.ArrowDropDown, "Drop Down")
-                }
-
-                DropdownMenu(
-                    expanded = drawer1,
-                    onDismissRequest = {
-                        drawer1 = false
-                    },
-                    offset = DpOffset(23.dp, 0.dp)
-                ) {
-                    DropdownMenuItem(
-                        text = { Text(Units.Millimeter.toString()) },
-                        onClick = {
-                            drawer1 = false
-                            outputUnit = Units.Millimeter
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text(Units.Centimeter.toString()) },
-                        onClick = {
-                            drawer1 = false
-                            outputUnit = Units.Centimeter
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text(Units.Meter.toString()) },
-                        onClick = {
-                            drawer1 = false
-                            outputUnit = Units.Meter
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text(Units.Kilometer.toString()) },
-                        onClick = {
-                            drawer1 = false
-                            outputUnit = Units.Kilometer
-                        }
-                    )
-                }
+                UnitSelectionButton(
+                    drawerState = drawer1,
+                    onClickButton = { drawer1 = true },
+                    onDismissDD = { drawer1 = false },
+                    currentUnit = Units.Centimeter,
+                    selectedUnit = { inputUnit = it },
+                )
             }
 
             Spacer(modifier = Modifier.width(16.dp))
 
             Box(modifier = Modifier.weight(1f)) {
-                Button(
-                    onClick = { drawer2 = true }, modifier = Modifier
-                        .align(Alignment.Center)
-                        .fillMaxWidth(0.8f)
-                ) {
-                    Text(outputUnit, fontSize = 14.sp)
-                    Icon(Icons.Default.ArrowDropDown, "Drop Down")
-                }
-
-                DropdownMenu(
-                    expanded = drawer2,
-                    onDismissRequest = {
-                        drawer2 = false
-                    },
-                    offset = DpOffset(23.dp, 0.dp)
-                ) {
-
-                    DropdownMenuItem(
-                        text = { Text("Millimeter") },
-                        onClick = {
-                            drawer2 = false
-                            inputUnit = Units.Millimeter
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text("Centimeter") },
-                        onClick = {
-                            drawer2 = false
-                            inputUnit = "Centimeter"
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text("Meter") },
-                        onClick = {
-                            drawer2 = false
-                            inputUnit = "Meter"
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = { Text("Kilometer") },
-                        onClick = {
-                            drawer2 = false
-                            inputUnit = "Kilometer"
-                        }
-                    )
-                }
+                UnitSelectionButton(
+                    drawerState = drawer2,
+                    onClickButton = { drawer2 = true },
+                    onDismissDD = { drawer2 = false },
+                    currentUnit = Units.Meter,
+                    selectedUnit = { outputUnit = it },
+                )
             }
         }
 
@@ -216,6 +139,61 @@ fun UnitConv() {
     }
 }
 
+@Composable
+private fun UnitSelectionButton(
+    drawerState: Boolean, // Drawer State
+    onClickButton: () -> Unit, // What Happen when button is clicked
+    onDismissDD: () -> Unit, // What Happen when Dropdown is dismissed
+    currentUnit: Units, // For Button Value
+    selectedUnit: (Units) -> Unit // On Unit Change
+) {
+    Button(
+        onClick = { onClickButton() },
+        modifier = Modifier
+//            .align(Alignment.Center)
+            .fillMaxWidth(0.8f)
+    ) {
+        Text(currentUnit.toString(), fontSize = 14.sp)
+        Icon(Icons.Default.ArrowDropDown, "Drop Down")
+    }
+
+    DropdownMenu(
+        expanded = drawerState,
+        onDismissRequest = {
+            onDismissDD()
+        },
+        offset = DpOffset(23.dp, 0.dp)
+    ) {
+        DropdownMenuItem(
+            text = { Text(Units.Millimeter.toString()) },
+            onClick = {
+                onDismissDD()
+                selectedUnit(Units.Millimeter)
+            }
+        )
+        DropdownMenuItem(
+            text = { Text(Units.Centimeter.toString()) },
+            onClick = {
+                onDismissDD()
+                selectedUnit(Units.Centimeter)
+            }
+        )
+        DropdownMenuItem(
+            text = { Text(Units.Meter.toString()) },
+            onClick = {
+                onDismissDD()
+                selectedUnit(Units.Meter)
+            }
+        )
+        DropdownMenuItem(
+            text = { Text(Units.Kilometer.toString()) },
+            onClick = {
+                onDismissDD()
+                selectedUnit(Units.Kilometer)
+            }
+        )
+    }
+}
 
 fun convert(inputUnit: Units, outputUnit: Units, inputValue: Int): Double {
     return when (inputUnit) {
