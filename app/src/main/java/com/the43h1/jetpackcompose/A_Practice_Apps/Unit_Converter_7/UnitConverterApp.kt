@@ -221,6 +221,7 @@ fun convert(inputUnit: Units, outputUnit: Units, inputValue: Int): Double {
     return when (inputUnit) {
         Units.Millimeter ->
             when (outputUnit) {
+                Units.Millimeter -> inputValue.toDouble()
                 Units.Centimeter -> (inputValue / 10).toDouble()
                 Units.Meter -> (inputValue / 100).toDouble()
                 Units.Kilometer -> (inputValue / 1000).toDouble()
@@ -229,14 +230,27 @@ fun convert(inputUnit: Units, outputUnit: Units, inputValue: Int): Double {
 
         Units.Centimeter ->
             when (outputUnit) {
-                "Centimeter" -> (inputValue / 10).toDouble()
-                "Meter" -> (inputValue / 100).toDouble()
-                "Kilometer" -> (inputValue / 1000).toDouble()
+                Units.Millimeter -> (inputValue * 10).toDouble()
+                Units.Centimeter -> inputValue.toDouble()
+                Units.Meter -> (inputValue / 10).toDouble()
+                Units.Kilometer -> (inputValue / 100).toDouble()
             }
 
-        else -> {
-            0.0
-        }
+        Units.Meter ->
+            when (outputUnit) {
+                Units.Millimeter -> (inputValue * 100).toDouble()
+                Units.Centimeter -> (inputValue * 10).toDouble()
+                Units.Meter -> inputValue.toDouble()
+                Units.Kilometer -> (inputValue / 10).toDouble()
+            }
+
+        Units.Kilometer ->
+            when (outputUnit) {
+                Units.Millimeter -> (inputValue * 1000).toDouble()
+                Units.Centimeter -> (inputValue * 100).toDouble()
+                Units.Meter -> (inputValue * 10).toDouble()
+                Units.Kilometer -> inputValue.toDouble()
+            }
     }
 }
 
