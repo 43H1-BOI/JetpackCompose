@@ -313,3 +313,48 @@ private fun DrawerContent(
         }
     }
 }
+
+
+/*
+
+
+Create Navigation Side Drawer
+    - Needed
+        navigation library implementation in gradle
+
+    Steps :
+		0. Create Screens
+			-  Create a sealed class containing data objects of that sealed class
+			{
+				sealed class Screen(screen : String){
+					data object Home : Screen("home")
+					data object Account : Screen("account")
+					data object Setting : Screen("setting")
+				}
+			}
+	
+        1. initiate with remember
+            coroutine scope
+            drawer state
+            navigation controller
+                - normal -
+            context ( for toast ) OPTIONAL
+
+        2. Create a modal navigation drawer
+        3. Use modal drawer sheet inside drawer content of above
+        4. inside them use drawer navigation items
+        5. place items and inside it
+        6. use logic for onClick
+            a. when item is clicked
+            b. close the drawer
+            c. open the corresponding screen
+
+            - Navigate Using navcontroller.navigate(resId)
+
+            inside main screen page use
+                NavHost(){
+                    composable(resId){ composableFun() }
+                }
+				
+				
+*/
