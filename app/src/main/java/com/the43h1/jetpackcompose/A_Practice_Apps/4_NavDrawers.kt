@@ -53,7 +53,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -63,15 +62,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.the43h1.jetpackcompose.R
-import com.the43h1.jetpackcompose.ui.theme.DarkColorScheme
+import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 import kotlinx.coroutines.future.future
 
 @Composable
 // Screen Content Composable
 private fun ScreenContent(
     paddingValue: PaddingValues, // Scaffold Padding Values
-    colorBox: Color = colorResource(R.color.skyBlue), // Color for Box
-    colorText: Color = Color.Black,
+    colorBox: Color = MaterialTheme.colorScheme.primary, // Color for Box
+    colorText: Color = MaterialTheme.colorScheme.onPrimary,
     text: String? = null // Text Inside Box
 ) {
     Box(
@@ -111,8 +110,9 @@ private fun ScreenContent(
 private fun TopBar(
     titleClick: () -> Unit = {},    // For Click on Title
     navFun: () -> Unit,         // For Nav Button's OnClick
-    action1: () -> Unit = { },   // For Click on Action 1 Icon
-    action2: () -> Unit = {}    // For Click on Action 2 Icon
+    action1: () -> Unit = {},   // For Click on Action 1 Icon
+    action2: () -> Unit = {}, // For Click on Action 2 Icon
+    isDark: Boolean, // For Ui State
 ) {
     TopAppBar(
         // Title of Top App Bar
@@ -126,7 +126,7 @@ private fun TopBar(
                 modifier = Modifier
                     .padding(start = 4.dp, end = 4.dp)
                     .clickable {
-                        titleClick
+                        titleClick()
                     }
             )
         },
@@ -152,16 +152,15 @@ private fun TopBar(
 
         // More Buttons on Right Side Of Screen
         actions = {
-            var imageV =
-                ImageVector.vectorResource(
-                    if (MaterialTheme.colorScheme != DarkColorScheme)
-                        R.drawable.light_mode
-                    else
-                        R.drawable.dark_mode
-                )
-
             Icon(
-                imageVector = imageV, "UI Modes",
+                imageVector =
+                    ImageVector.vectorResource(
+                        if (isDark)
+                            R.drawable.light_mode
+                        else
+                            R.drawable.dark_mode
+                    ),
+                contentDescription = "UI Modes",
                 tint = Color.Black,
                 modifier = Modifier
                     .size(35.dp)
@@ -234,9 +233,13 @@ private fun SideNavDrawer(
             Icon(
                 Icons.Default.Home, "Home", modifier = Modifier
                     .padding(end = 8.dp)
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = MaterialTheme.colorScheme.onBackground
             )
-            Text("Home", fontSize = 20.sp)
+            Text(
+                "Home", fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
 
 
@@ -253,9 +256,13 @@ private fun SideNavDrawer(
             Icon(
                 Icons.Default.Person, "Profile", modifier = Modifier
                     .padding(end = 8.dp)
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = MaterialTheme.colorScheme.onBackground
             )
-            Text("Profile", fontSize = 20.sp)
+            Text(
+                "Profile", fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
 
 
@@ -272,9 +279,14 @@ private fun SideNavDrawer(
             Icon(
                 Icons.Default.Notifications, "Notification", modifier = Modifier
                     .padding(end = 8.dp)
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = MaterialTheme.colorScheme.onBackground
+
             )
-            Text("Notification", fontSize = 20.sp)
+            Text(
+                "Notification", fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
 
 
@@ -292,9 +304,14 @@ private fun SideNavDrawer(
             Icon(
                 Icons.Default.Email, "Contact Us", modifier = Modifier
                     .padding(end = 8.dp)
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = MaterialTheme.colorScheme.onBackground
+
             )
-            Text("Contact Us", fontSize = 20.sp)
+            Text(
+                "Contact Us", fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
 
 
@@ -312,9 +329,13 @@ private fun SideNavDrawer(
             Icon(
                 Icons.Default.Star, "Rate Our App", modifier = Modifier
                     .padding(end = 8.dp)
-                    .size(25.dp)
+                    .size(25.dp),
+                tint = MaterialTheme.colorScheme.onBackground
             )
-            Text("Rate Our App", fontSize = 20.sp)
+            Text(
+                "Rate Our App", fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
     }
 }
@@ -335,7 +356,10 @@ private fun NavButtons(
         content = {
             Icon(
                 icon, iconDescription,
-                tint = if (isSelected) Color.White else Color.Black,
+                tint = if (isSelected)
+                    MaterialTheme.colorScheme.onSecondary
+                else
+                    MaterialTheme.colorScheme.onBackground,
                 modifier = modifier
             )
         }
@@ -491,57 +515,60 @@ private fun ScaffoldContent(
 
 @Composable
 fun MainApp() {
-    var drawerState = rememberDrawerState(
-        initialValue = DrawerValue.Closed
-    )
+    // Side Drawer State
+    var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     // For Bottom Drawer
-    var isSheetOpen by remember {
-        mutableStateOf(false)
-    }
+    var isSheetOpen by remember { mutableStateOf(false) }
 
     var scope = rememberCoroutineScope()
 
-    ModalNavigationDrawer(
-        drawerContent = {
-            SideNavDrawer()
-        },
-        drawerState = drawerState,
-        modifier = Modifier
-            .statusBarsPadding()
-            .navigationBarsPadding()
-    ) {
-        Scaffold(
-            topBar = {
-                TopBar(
-                    navFun = {
-                        scope.future {
-                            drawerState.apply {
-                                if (isClosed) open() else close()
+    // Dark Mode Switching
+    var isDark by remember { mutableStateOf(false) }
+
+    JetpackComposeTheme(isDark) {
+        ModalNavigationDrawer(
+            drawerContent = {
+                SideNavDrawer()
+            },
+            drawerState = drawerState,
+            modifier = Modifier
+                .statusBarsPadding()
+                .navigationBarsPadding()
+        ) {
+            Scaffold(
+                topBar = {
+                    TopBar(
+                        navFun = {
+                            scope.future {
+                                drawerState.apply {
+                                    if (isClosed) open() else close()
+                                }
                             }
+
+                        },
+                        action1 = {
+                            isDark = !isDark
+                        },
+                        isDark = isDark
+                    )
+                },
+                bottomBar = {
+                    BottomBar(
+                        clickOption3 = {
+                            isSheetOpen = true
                         }
+                    )
+                },
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                containerColor = MaterialTheme.colorScheme.primary
+            ) { padding ->
+                ScaffoldContent(padding, "Home")
+            }
 
-                    },
-                    action1 = {
-
-                    }
-                )
-            },
-            bottomBar = {
-                BottomBar(
-                    clickOption3 = {
-                        isSheetOpen = true
-                    }
-                )
-            },
-            contentColor = MaterialTheme.colorScheme.onPrimary,
-            containerColor = MaterialTheme.colorScheme.primary
-        ) { padding ->
-            ScaffoldContent(padding, "Home")
-        }
-
-        if (isSheetOpen) {
-            BottomDrawer { isSheetOpen = false }
+            if (isSheetOpen) {
+                BottomDrawer { isSheetOpen = false }
+            }
         }
     }
 }
