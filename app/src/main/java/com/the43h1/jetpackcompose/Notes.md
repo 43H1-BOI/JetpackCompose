@@ -36,3 +36,10 @@
 - Buttons used onClick = {..} function to perform Action
 
 Too much nesting is not good for memory
+
+
+
+# State
+
+	State refers to mutable variable that triggers recomposition when it's value changes
+	
