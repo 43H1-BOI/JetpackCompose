@@ -44,9 +44,8 @@ fun SideEffectsEx2() {
         Text("Increment Value")
     }
 
-    var keyValue = count % 5 == 0
     // Here Log is running only when the value of key changes
-    LaunchedEffect(key1 = keyValue) {
+    LaunchedEffect(key1 = count % 5 == 0) {
         Log.v("2.0", "Counter = $count")
     }
 }
