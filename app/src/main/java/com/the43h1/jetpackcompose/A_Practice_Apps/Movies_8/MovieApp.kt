@@ -62,9 +62,6 @@ fun MovieApp() {
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-//        modifier = Modifier.fillMaxSize().background(
-//            color = MaterialTheme.colorScheme.primaryContainer
-//        ),
         drawerContent = {
             DrawerContent(context, coroutineScope, drawerState, navigationController)
         }
