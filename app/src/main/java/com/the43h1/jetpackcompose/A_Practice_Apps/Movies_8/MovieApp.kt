@@ -54,7 +54,7 @@ fun MovieApp() {
     var coroutineScope = rememberCoroutineScope()
 
     /** Stores Drawer State */
-    var drawerState = rememberDrawerState(initialValue = DrawerValue.Open)
+    var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     /** Contains context of application */
     val context = LocalContext.current.applicationContext
