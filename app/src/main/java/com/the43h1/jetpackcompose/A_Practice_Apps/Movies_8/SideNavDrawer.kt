@@ -79,7 +79,8 @@ internal fun DrawerContent(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .statusBarsPadding()
+                .height(64.dp)
+//                .background(MaterialTheme.colorScheme.inversePrimary)
                 .clickable {
                     Toast.makeText(context, "Movilogy App", Toast.LENGTH_SHORT).show()
                 },
