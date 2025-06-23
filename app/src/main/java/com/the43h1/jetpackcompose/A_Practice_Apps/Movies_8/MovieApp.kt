@@ -84,11 +84,15 @@ fun MovieApp() {
                 )
             },
             floatingActionButton = {
-                FloatingActionButton(onClick = {
-                    // TODO("will popup 4 options on top of that")
-                },
-                    containerColor = MaterialTheme.colorScheme.primary) {
-                    Icon(Icons.Default.KeyboardArrowUp, "More Options")
+                FloatingActionButton(
+                    onClick = {
+                        // TODO("will popup add movies bottom drawer")
+                        //  Add Movie
+
+                    },
+                    containerColor = MaterialTheme.colorScheme.primary
+                ) {
+                    Icon(Icons.Default.Add, "Add Movie")
                 }
             }
         )
