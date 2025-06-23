@@ -2,13 +2,13 @@ package com.the43h1.jetpackcompose.A_Practice_Apps.Movies_8
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
@@ -74,7 +74,7 @@ internal fun DrawerContent(
         modifier = Modifier
             .fillMaxWidth(0.7f),
         drawerContainerColor = MaterialTheme.colorScheme.primary,
-        drawerContentColor = MaterialTheme.colorScheme.onSecondary,
+        drawerContentColor = MaterialTheme.colorScheme.onPrimary,
     ) {
         Row(
             modifier = Modifier
@@ -96,7 +96,7 @@ internal fun DrawerContent(
             )
         }
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(21.dp))
 
         NavigationDrawerItem(
             label = {
