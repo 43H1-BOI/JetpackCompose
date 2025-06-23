@@ -69,23 +69,54 @@ fun MovieApp() {
             DrawerContent(context, coroutineScope, drawerState, navigationController)
         }
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    color = MaterialTheme.colorScheme.primaryContainer
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = appName,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    },
+                    colors = TopAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                        actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                        scrolledContainerColor = MaterialTheme.colorScheme.primary
+                    )
                 )
-        ) {
-
-            NavHost(
-                navController = navigationController,
-                startDestination = Screen.HomePage.screenName
-            ) {
-                composable(Screen.HomePage.screenName) { HomeScreen() }
-                composable(Screen.FavoritePage.screenName) { FavoriteScreen() }
-                composable(Screen.ProfilePage.screenName) { ProfileScreen() }
+            },
+            floatingActionButton = {
+                FloatingActionButton(onClick = {
+                    // TODO("will popup 4 options on top of that")
+                },
+                    containerColor = MaterialTheme.colorScheme.primary) {
+                    Icon(Icons.Default.KeyboardArrowUp, "More Options")
+                }
             }
+        )
+        { innerPadding ->
+            Box(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                    .background(
+                        color = MaterialTheme.colorScheme.primaryContainer
+                    )
+            ) {
+                NavHost(
+                    navController = navigationController,
+                    startDestination = Screen.HomePage.screenName
+                ) {
+                    composable(Screen.HomePage.screenName) { HomeScreen() }
+                    composable(Screen.FavoritePage.screenName) { FavoriteScreen() }
+                    composable(Screen.ProfilePage.screenName) { ProfileScreen() }
+                }
 
+            }
         }
     }
 }
