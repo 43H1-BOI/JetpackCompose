@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="icon_size">25.dp</dimen>
+    <dimen name="icon_size">24.dp</dimen>
+    <dimen name="heading_size">0</dimen>
 
 </resources>
