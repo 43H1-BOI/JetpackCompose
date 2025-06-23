@@ -63,7 +63,12 @@ fun MovieApp() {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DrawerContent(context, coroutineScope, drawerState, navigationController)
+            DrawerContent(
+                context,
+                coroutineScope,
+                drawerState,
+                navigationController
+            )
         }
     ) {
         Scaffold(
