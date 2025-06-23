@@ -44,6 +44,131 @@ fun NavDrawerItem(
     }
 }
 
+
+@Composable
+internal fun DrawerContent(
+    context: Context?,
+    coroutineScope: CoroutineScope,
+    drawerState: DrawerState,
+    navigationController: NavHostController
+) {
+    ModalDrawerSheet(
+        modifier = Modifier
+            .fillMaxWidth(0.7f),
+        drawerContainerColor = MaterialTheme.colorScheme.primary,
+        drawerContentColor = MaterialTheme.colorScheme.onSecondary,
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .clickable {
+                    Toast.makeText(context, "Movilogy App", Toast.LENGTH_SHORT).show()
+                },
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.Default.MailOutline, "Movilogy App Logo")
+            Spacer(Modifier.width(8.dp))
+            Text(
+                "Movilogy",
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 24.sp,
+            )
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        NavigationDrawerItem(
+            label = {
+                NavDrawerItem(
+                    Icons.Default.Home,
+                    "Home Button",
+                    "Home"
+                )
+            },
+            selected = false,
+            onClick = {
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+                navigationController.navigate(Screen.HomePage.screenName)
+            }
+        )
+
+        NavigationDrawerItem(
+            label = {
+                NavDrawerItem(
+                    Icons.Default.Favorite,
+                    "Favorite Button",
+                    "Favorite"
+                )
+            },
+            selected = false,
+            onClick = {
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+                navigationController.navigate(Screen.FavoritePage.screenName)
+            }
+        )
+
+        NavigationDrawerItem(
+            label = {
+                NavDrawerItem(
+                    Icons.AutoMirrored.Filled.Send,
+                    "Watchlist Button",
+                    "Watchlist"
+                )
+            },
+            selected = false,
+            onClick = {
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+                navigationController.navigate(Screen.HomePage.screenName)
+//                        TODO("Add Watchlist Page)
+            }
+        )
+
+        NavigationDrawerItem(
+            label = {
+                NavDrawerItem(
+                    Icons.Filled.Person,
+                    "Profile Button",
+                    "Profile"
+                )
+            },
+            selected = false,
+            onClick = {
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+                navigationController.navigate(Screen.ProfilePage.screenName)
+            }
+        )
+
+        NavigationDrawerItem(
+            label = {
+                NavDrawerItem(
+                    Icons.AutoMirrored.Filled.ExitToApp,
+                    "Logout Button",
+                    "Logout"
+                )
+            },
+            selected = false,
+            onClick = {
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+                Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
+//                        TODO("Add Login Page Here + Logout Animation")
+//                        navigationController.navigate(Screen.HomePage.screenName)
+            }
+        )
+    }
+}
+
 @Preview
 @Composable
 fun TempPrev() {
