@@ -1,9 +1,7 @@
 package com.the43h1.jetpackcompose.A_Designs.A_Zomato
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -43,7 +40,7 @@ import com.the43h1.jetpackcompose.R
 import com.the43h1.jetpackcompose.ui.theme.Orange
 import com.the43h1.jetpackcompose.ui.theme.White
 
-@Preview(showSystemUi = true)
+//@Preview(showSystemUi = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ZomatoApp() {
@@ -171,40 +168,43 @@ fun ZomatoApp() {
 
             Spacer(Modifier.height(16.dp))
 
+            /**
             Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
             ) {
-                Card(
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp)
-                ) {
-                    Image(painterResource(cardItems[0].imageId), cardItems[0].itemName)
-                    Text(cardItems[0].itemName)
-                }
-                Card(
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp)
-                ) {
-                    Image(painterResource(cardItems[1].imageId), cardItems[1].itemName)
-                    Text(cardItems[1].itemName)
-                }
-                Card(
-                    elevation = CardDefaults.cardElevation(10.dp),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp)
-                ) {
-                    Image(painterResource(cardItems[2].imageId), cardItems[2].itemName)
-                    Text(cardItems[2].itemName)
-                }
+            Card(
+            elevation = CardDefaults.cardElevation(10.dp),
+            modifier = Modifier
+            .weight(1f)
+            .padding(8.dp)
+            ) {
+            Image(
+            painterResource(cardItems[0].imageId),
+            contentDescription = cardItems[0].itemName,
+            modifier = Modifier.shadow(10.dp)
+            )
+            }
+            Card(
+            elevation = CardDefaults.cardElevation(10.dp),
+            modifier = Modifier
+            .weight(1f)
+            .padding(8.dp)
+            ) {
+            Image(painterResource(cardItems[1].imageId), cardItems[1].itemName)
+            }
+            Card(
+            elevation = CardDefaults.cardElevation(10.dp),
+            modifier = Modifier
+            .weight(1f)
+            .padding(8.dp)
+            ) {
+            Image(painterResource(cardItems[2].imageId), cardItems[2].itemName)
+            }
             }
 
+             */
         }
     }
 }
@@ -252,6 +252,40 @@ private fun OneBannerScreen(
             painter = painterResource(bannerData.imageId),
             contentDescription = bannerData.imageDetails,
             contentScale = ContentScale.Crop
+        )
+    }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun EachCard() {
+
+    var cardItems = listOf<CardData>(
+        CardData(
+            imageId = R.drawable.pfp_8_car,
+            itemName = "Blue Lambo"
+        )
+    )
+
+    Column(modifier = Modifier) {
+        Card(
+            modifier = Modifier.padding(8.dp),
+            elevation = CardDefaults.cardElevation(8.dp)
+        ) {
+
+            Image(
+                painterResource(cardItems[0].imageId),
+                contentDescription = cardItems[0].itemName,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(10.dp))
+
+            )
+        }
+
+        Text(
+            text = cardItems[0].itemName,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
         )
     }
 }

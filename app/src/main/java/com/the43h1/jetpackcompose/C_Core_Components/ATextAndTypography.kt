@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -70,20 +71,28 @@ fun RainbowText() {
         Text(
             // buildAnnotatedString for functions like append()
             text = buildAnnotatedString {
-                append("I am not here to\n")
-                // Used to apply styling to text
                 withStyle(
-                    SpanStyle(
-                        brush = Brush.verticalGradient(
-                            colors = rainbow,
-                            endY = 135f
-                        )
+                    // Used to apply styling to paragraph
+                    style = ParagraphStyle(
+                        textAlign = TextAlign.Center
                     )
                 ) {
-                    append("Interfere in Anyone's Matter\n")
-                    append("I am here to build my own Empire\n")
+                    append("I am not here to\n")
+                    withStyle(
+                        // Used to apply styling to text
+                        style = SpanStyle(
+                            brush = Brush.verticalGradient(
+                                colors = rainbow,
+                                endY = 135f
+                            )
+                        )
+                    ) {
+                        append("Interfere in Anyone's Matter\n")
+                        append("I am here to build my own Empire\n")
+                    }
+                    append("Samjhe ?!")
+
                 }
-                append("Samjhe ?!")
             }
         )
     }
@@ -114,7 +123,9 @@ fun OverflowText() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Google has recently unveiled Material 3 Expressive, an evolution of its Material Design 3 system, focusing on enhanced expressiveness and customizability for Android and Wear OS devices. This design update aims to create a more personal and emotionally impactful user experience. It's not a new version of Material Design, but rather a refinement with new features and design tactics. \n".repeat(50),
+            text = "Google has recently unveiled Material 3 Expressive, an evolution of its Material Design 3 system, focusing on enhanced expressiveness and customizability for Android and Wear OS devices. This design update aims to create a more personal and emotionally impactful user experience. It's not a new version of Material Design, but rather a refinement with new features and design tactics. \n".repeat(
+                50
+            ),
             maxLines = 4,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.width(350.dp)
@@ -128,7 +139,7 @@ fun OverflowText() {
 fun TextPreview() {
 //     Uncomment Below Lines to Check Their Previews
 //    SimpleText()
-//    RainbowText()
+    RainbowText()
 //    MovingText()
 //    OverflowText()
 }
