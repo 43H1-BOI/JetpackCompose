@@ -102,10 +102,12 @@ fun TodoApp() {
                     {
 
                         Checkbox(
-                            checked = checkedState[index], onCheckedChange = {
+                            checked = checkedState[index],
+                            onCheckedChange = {
                                 checkedState[index] = it
 
-                            }, modifier = Modifier
+                            },
+                            modifier = Modifier
                                 .size(25.dp)
                                 .padding(start = 10.dp, end = 10.dp)
                                 .align(Alignment.CenterVertically)
