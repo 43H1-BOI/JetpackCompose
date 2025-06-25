@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.the43h1.jetpackcompose.A_Practice_Apps.QuotesApp_6.MainQuotesApp
+import com.the43h1.jetpackcompose.U_Navigation.MainScreen
 import com.the43h1.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,29 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetpackComposeTheme {
-
-//                AccessResources()
-//                ScrollableText()
-//                EverythingCombined()
-//                SimpleOne()
-//                SelectableText()
-//                AuthScreen()
-//                AllButtons()
-//                ShoppingCards()
-//                InternetImage()
-//                IconsEx()
-//            TodoApp()
-//            PreviewFun()
-//            PhotoAppLayout()
-//                FloatingBasics()
-//                ThreeDotMenuEx()
-//                MainApp()
-//                ScaffoldLayout()
-//                MainScreen()
-//                DrawerBasic()
-//                NavBottomDrawer()
-                MainQuotesApp()
-//                DrawerPrev()
+                MainScreen()
             }
         }
     }

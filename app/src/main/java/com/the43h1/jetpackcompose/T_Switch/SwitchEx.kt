@@ -60,5 +60,4 @@ private fun SwitchPreview() {
     }
 }
 
-/** Add Switch by Using Switch() Composable Fun
- */
+/** Add Switch by Using Switch() Composable Fun */
