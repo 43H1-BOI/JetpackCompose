@@ -4,6 +4,7 @@
     1. MainActivity
 2. Fundamentals
     1. Basics
+	
 
 ## Fundamentals
 
@@ -36,6 +37,12 @@
 - Buttons used onClick = {..} function to perform Action
 
 Too much nesting is not good for memory
+
+
+
+
+
+
 
 
 
