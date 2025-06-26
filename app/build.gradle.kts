@@ -75,8 +75,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
 
     // For Images from Internet
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network.okhttp)
+    implementation(libs.coil.kt.coil.compose)
 }
 
 
