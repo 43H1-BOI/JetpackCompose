@@ -99,6 +99,7 @@ fun AnotherLoginPageEx(modifier: Modifier = Modifier) {
     var password by remember { mutableStateOf("") }
 
     var isPassShowing by remember { mutableStateOf(false) }
+    var icon = if (!isPassShowing) Icons.Default.RemoveRedEye else Icons.Default.TextRotationNone
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -154,7 +155,7 @@ fun AnotherLoginPageEx(modifier: Modifier = Modifier) {
                 }
                 ) {
                     Icon(
-                        imageVector = if (!isPassShowing) Icons.Default.RemoveRedEye else Icons.Default.TextRotationNone,
+                        imageVector = icon,
                         "Show Password"
                     )
                 }
