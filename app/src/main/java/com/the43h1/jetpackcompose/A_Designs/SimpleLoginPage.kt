@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SimpleLoginPageEx(modifier: Modifier = Modifier) {
+fun SimpleLoginPageEx() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -91,10 +91,9 @@ fun SimpleLoginPageEx(modifier: Modifier = Modifier) {
     }
 }
 
-
 // With Hide-Show Password
 @Composable
-fun AnotherLoginPageEx(modifier: Modifier = Modifier) {
+fun AnotherLoginPageEx() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
