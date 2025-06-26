@@ -1,5 +1,6 @@
 package com.the43h1.jetpackcompose.Z_Extras.Constraint_Layout
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Surface
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstrainedLayoutReference
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -42,30 +44,22 @@ fun ConstraintsEx(modifier: Modifier = Modifier) {
             Text("Red")
         }
 
+        createHorizontalChain(
+            // Like Horizontal Arrangement
+            blueB, pinkB, chainStyle = ChainStyle.Packed
+        )
 
-        Button(
-            modifier = Modifier.constrainAs(greenB) {
-                top.linkTo(redB.bottom)
-                bottom.linkTo(blueB.top)
-                width = Dimension.value(60.dp)
-                height = Dimension.wrapContent
-            },
-            onClick = {},
-            colors = ButtonColors(
-                containerColor = Green,
-                contentColor = Black,
-                disabledContainerColor = Black,
-                disabledContentColor = Green
-            )
-        ) {
-            Text("Green")
-        }
+        createVerticalChain(
+            // Like Vertical Arrangement
+            redB, greenB, chainStyle = ChainStyle.Packed
+
+        )
+
 
 
         Button(
             modifier = Modifier.constrainAs(blueB) {
-                top.linkTo(blueB.bottom)
-                bottom.linkTo(pinkB.top)
+                top.linkTo(redB.bottom)
                 width = Dimension.wrapContent
                 height = Dimension.value(30.dp)
             },
@@ -83,8 +77,7 @@ fun ConstraintsEx(modifier: Modifier = Modifier) {
 
         Button(
             modifier = Modifier.constrainAs(pinkB) {
-                top.linkTo(pinkB.bottom)
-                bottom.linkTo(parent.bottom)
+                top.linkTo(redB.bottom)
                 end.linkTo(parent.end)
                 width = Dimension.wrapContent
                 height = Dimension.value(30.dp)
@@ -99,13 +92,31 @@ fun ConstraintsEx(modifier: Modifier = Modifier) {
         ) {
             Text("Pink")
         }
+
+
+        Button(
+            modifier = Modifier.constrainAs(greenB) {
+                top.linkTo(blueB.bottom)
+                width = Dimension.wrapContent
+                height = Dimension.wrapContent
+            },
+            onClick = {},
+            colors = ButtonColors(
+                containerColor = Green,
+                contentColor = Black,
+                disabledContainerColor = Black,
+                disabledContentColor = Green
+            )
+        ) {
+            Text("Green")
+        }
     }
 }
 
 @Preview
 @Composable
 private fun ConstraintsPreview() {
-    Surface {
+    Surface(modifier = Modifier.fillMaxSize()) {
         ConstraintsEx()
     }
 }
