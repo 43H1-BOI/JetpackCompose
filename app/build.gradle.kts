@@ -34,7 +34,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
+        kotlinCompilerExtensionVersion = "2.0.0"
     }
 
     kotlinOptions {
@@ -63,7 +63,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-//    implementation("androidx.compose.material:material:")
+    // For Extended icons
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
 
@@ -76,6 +76,7 @@ dependencies {
 
     // For Images from Internet
     implementation(libs.coil.kt.coil.compose)
+
+    // For Hilt
+    implementation(libs.androidx.hilt.navigation.compose)
 }
-
-
