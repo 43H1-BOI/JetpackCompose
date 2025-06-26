@@ -1,7 +1,12 @@
 package com.the43h1.jetpackcompose.C_Core_Components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -19,6 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.the43h1.jetpackcompose.R
 
 
@@ -33,12 +39,13 @@ fun OutlinedOne() {
     }
 
     var password by remember {
-        mutableStateOf("***")
+        mutableStateOf("")
     }
 
-    Box(
+    Column(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         OutlinedTextField(
             // this is initial value inside text field
@@ -55,21 +62,21 @@ fun OutlinedOne() {
             }
         )
 
-//        Spacer(Modifier.width(20.dp))
-        /*
+        Spacer(Modifier.height(20.dp))
+
 //  I Don't Know how to do this ( add two text fields )
         OutlinedTextField(
-        value = password,
-        onValueChange = {
-        password = it
-        },
-        label = {
-        Text(
-        text = "Password"
+            value = password,
+            onValueChange = {
+                password = it
+            },
+            label = {
+                Text(
+                    text = "Password"
+                )
+            }
         )
-        }
-        )
-        */
+
     }
 
     /*
@@ -131,7 +138,7 @@ fun PasswordField() {
     }
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
 
@@ -155,6 +162,6 @@ fun PasswordField() {
 @Composable
 fun OutlineTextFieldPreview() {
 //    SimpleOne()
-//    OutlinedOne()
+    OutlinedOne()
 //    PasswordField()
 }
