@@ -32,13 +32,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.the43h1.jetpackcompose.ui.theme.Black
 import com.the43h1.jetpackcompose.ui.theme.White
 
 @Composable
-fun SignUpEx(modifier: Modifier = Modifier) {
+fun SignUpEx(
+    imageVector: ImageVector,
+    contentDescription: String,
+    text1: String,
+    text2: String,
+    modifier: Modifier = Modifier
+) {
     var buttonTapped by remember {
         mutableStateOf(false)
     }
@@ -71,14 +78,16 @@ fun SignUpEx(modifier: Modifier = Modifier) {
             border = BorderStroke(0.5f.dp, Black),
             contentPadding = ButtonDefaults.TextButtonWithIconContentPadding
         ) {
-            Icon(Icons.Default.Email, "Email")
+            Icon(
+                imageVector = imageVector, contentDescription = contentDescription,
+                tint = Color.Unspecified
+            )
 
             Spacer(Modifier.width(4.dp))
 
-            Text(text = if (!buttonTapped) "Sign Up With Email" else "Creating Account...")
-            if (
-                buttonTapped
-            ) {
+            Text(text = if (!buttonTapped) text1 else text2)
+
+            if (buttonTapped) {
                 Spacer(Modifier.width(8.dp))
 
                 CircularProgressIndicator(
@@ -96,6 +105,6 @@ fun SignUpEx(modifier: Modifier = Modifier) {
 @Composable
 private fun SignupPreview() {
     Surface(modifier = Modifier.fillMaxSize()) {
-        SignUpEx()
+        SignUpEx(Icons.Default.Email, "Email", "Sign Up With Email", "Creating Account...")
     }
 }
