@@ -8,6 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material.icons.filled.TextRotationNone
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -25,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -85,10 +91,14 @@ fun SimpleLoginPageEx(modifier: Modifier = Modifier) {
     }
 }
 
+
+// With Hide-Show Password
 @Composable
 fun AnotherLoginPageEx(modifier: Modifier = Modifier) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    var isPassShowing by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -127,7 +137,7 @@ fun AnotherLoginPageEx(modifier: Modifier = Modifier) {
             onValueChange = {
                 password = it
             },
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (!isPassShowing) PasswordVisualTransformation() else VisualTransformation.None,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
@@ -137,7 +147,18 @@ fun AnotherLoginPageEx(modifier: Modifier = Modifier) {
                 Text("Password")
             },
             shape = RoundedCornerShape(10.dp, 10.dp, 0.dp, 0.dp),
-            colors = TextFieldDefaults.colors(MaterialTheme.colorScheme.primary)
+            colors = TextFieldDefaults.colors(MaterialTheme.colorScheme.primary),
+            trailingIcon = {
+                IconButton(onClick = {
+                    isPassShowing = !isPassShowing
+                }
+                ) {
+                    Icon(
+                        imageVector = if (!isPassShowing) Icons.Default.RemoveRedEye else Icons.Default.TextRotationNone,
+                        "Show Password"
+                    )
+                }
+            }
         )
 
     }
