@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.HorizontalRuler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
@@ -110,6 +111,8 @@ fun ConstraintsEx(modifier: Modifier = Modifier) {
         ) {
             Text("Green")
         }
+
+        HorizontalRuler()
     }
 }
 
@@ -137,9 +140,19 @@ private fun ConstraintsPreview() {
  *      - start
  *      - end
  *
+ * -> Apply Horizontal Arrangement Using Chain
+ *      createHorizontalChain(
+ *          blueB, pinkB, chainStyle = ChainStyle.Packed
+ *      )
  *
- * ->
+ * -> Apply Vertical Arrangement Using Chain
+ *      createVerticalChain(
+ *          blueB, pinkB, chainStyle = ChainStyle.Packed
+ *      )
  *
- *
+ *      -> Mainly 3 ChainStyles Are There :
+ *          - Packed -> SpaceAround
+ *          - SpreadInside -> SpaceBetween
+ *          - Spread -> SpaceEvenly
  *
  */
