@@ -68,7 +68,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
 
     // For Navigation
-    implementation("androidx.navigation:navigation-compose:2.9.0")
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.constraintlayout)
     // To use constraintlayout in compose
