@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -484,19 +483,19 @@ private fun MainAppPreview() {
 }
 
 
-/* Documentation :-
+/** Documentation :-
 
 # All Functions Summary :
-    1. TopBar() -> For All TopBar Contents
-    2. SideNavDrawer() -> For Side Navigation Drawer Content
-    3. NavButtons() -> For Navigation Buttons
-    4. BottomBar() -> For Bottom Navigation Bar
-    5. BottomDrawer() -> For Bottom Navigation Drawer which pops out when we press + icon
-    6. ScaffoldContent() -> Contents of App
-    7. MainApp() -> All App Components Combined
+1. TopBar() -> For All TopBar Contents
+2. SideNavDrawer() -> For Side Navigation Drawer Content
+3. NavButtons() -> For Navigation Buttons
+4. BottomBar() -> For Bottom Navigation Bar
+5. BottomDrawer() -> For Bottom Navigation Drawer which pops out when we press + icon
+6. ScaffoldContent() -> Contents of App
+7. MainApp() -> All App Components Combined
 
 
 # Approach :
-    1. TopBar() ->
+1. TopBar() ->
 
-*/
+ */

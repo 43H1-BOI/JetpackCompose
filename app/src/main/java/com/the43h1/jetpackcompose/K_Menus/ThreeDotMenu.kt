@@ -172,6 +172,6 @@ fun MinimalDropdownMenu() {
 @Preview(showSystemUi = true)
 @Composable
 fun ThreeDotMenuPreview() {
-    ThreeDotMenuEx()
-//    MinimalDropdownMenu()
+//    ThreeDotMenuEx()
+    MinimalDropdownMenu()
 }

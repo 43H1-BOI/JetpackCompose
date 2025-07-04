@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AssistChipCode() {
 
-
     var enabled by remember {
         mutableStateOf(true)
     }
@@ -39,9 +38,11 @@ fun AssistChipCode() {
         verticalArrangement = Arrangement.Center
     ) {
 
-        Button(onClick = {
-            enabled = !enabled
-        }) { Text("Toggle Button") }
+        Button(
+            onClick = {
+                enabled = !enabled
+            }
+        ) { Text("Toggle Button") }
 
         if (enabled) {
             AssistChip(

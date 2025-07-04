@@ -38,10 +38,13 @@ fun SliderEx(modifier: Modifier = Modifier) {
             value = sliderPosition,
             onValueChange = { sliderPosition = it },
             onValueChangeFinished = {
-                Toast.makeText(context, "Laalchi Insaan", Toast.LENGTH_SHORT).show()
+                if (sliderPosition == 1000f) {
+                    Toast.makeText(context, "Laalchi Insaan", Toast.LENGTH_SHORT).show()
+                    sliderPosition = 0f
+                }
             },
             steps = 9,
-            valueRange = 0f..100f,
+            valueRange = 0f..1000f,
             colors = SliderDefaults.colors(
                 thumbColor = MaterialTheme.colorScheme.primary,
                 activeTrackColor = MaterialTheme.colorScheme.secondary,

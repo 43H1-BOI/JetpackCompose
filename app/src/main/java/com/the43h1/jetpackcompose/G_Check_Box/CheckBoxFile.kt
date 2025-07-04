@@ -29,7 +29,6 @@ fun CheckBoxEx() {
 
     var listItems: List<String> = listOf("Option 1", "Option 2", "Option 3")
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,8 +68,6 @@ fun CheckBoxEx() {
                     fontWeight = FontWeight.SemiBold
                 )
             }
-
-
         }
     }
 }
