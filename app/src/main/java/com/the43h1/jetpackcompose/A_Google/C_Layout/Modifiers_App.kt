@@ -1,11 +1,14 @@
 package com.the43h1.jetpackcompose.A_Google.C_Layout
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -21,8 +24,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.the43h1.jetpackcompose.R
 
 @Preview(showBackground = true)
 @Composable
@@ -32,11 +39,13 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xfff4f0ee)),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            .background(
+                Color(0xfff4f0ee)
+            )
+            .padding(16.dp),
     ) {
-
         Spacer(modifier = Modifier.height(20.dp))
+        /** Search Bar */
         TextField(
             label = {
                 Row {
@@ -47,7 +56,31 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
             },
             value = searchValue,
             onValueChange = { searchValue = it },
-            colors = TextFieldDefaults.colors(unfocusedContainerColor = Color.White)
+            colors = TextFieldDefaults.colors(unfocusedContainerColor = Color.White),
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.CenterHorizontally)
         )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        /** Align Your body */
+        Text(
+            "Align Your Body",
+            fontSize = 18.sp,
+            fontFamily = FontFamily.SansSerif
+        )
+        Row {
+            AlignCard()
+            AlignCard()
+            AlignCard()
+            AlignCard()
+        }
     }
+}
+
+
+@Composable
+fun AlignCard() {
+//    Image(painter = painterResource(R.drawable.))
 }
