@@ -70,17 +70,48 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
             fontSize = 18.sp,
             fontFamily = FontFamily.SansSerif
         )
-        Row {
-            AlignCard()
-            AlignCard()
-            AlignCard()
-            AlignCard()
+        Spacer(modifier = Modifier.height(12.dp))
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.horizontalScroll(rememberScrollState())
+        ) {
+            AlignCard(R.drawable.ab1_inversions,"Inversions")
+            AlignCard(R.drawable.ab2_quick_yoga,"Quick yoga")
+            AlignCard(R.drawable.ab3_stretching,"Stretching")
+            AlignCard(R.drawable.ab4_tabata,"Tabata")
+            AlignCard(R.drawable.ab5_hiit,"Hiit")
+            AlignCard(R.drawable.ab6_pre_natal_yoga,"Pre natal yoga")
         }
     }
 }
 
 
 @Composable
-fun AlignCard() {
-//    Image(painter = painterResource(R.drawable.))
+fun AlignCard(image: Int, description : String) {
+    Column {
+        Image(
+            painter = painterResource(image),
+            contentDescription = description,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(110.dp)
+                .clip(CircleShape)
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = description,
+            fontSize = 16.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+    }
+}
+
+
+//@Preview(showSystemUi = true)
+@Composable
+private fun AlignCardPreview() {
+    Row {
+        AlignCard(R.drawable.ab1_inversions,"Inversions")
+    }
 }
