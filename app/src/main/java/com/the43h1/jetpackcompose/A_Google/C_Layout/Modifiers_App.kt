@@ -87,7 +87,7 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
 
 
 @Composable
-fun AlignCard(image: Int, description : String) {
+fun AlignCard(image: Int, description: String) {
     Column {
         Image(
             painter = painterResource(image),
@@ -108,9 +108,8 @@ fun AlignCard(image: Int, description : String) {
 }
 
 
-//@Preview(showSystemUi = true)
 @Composable
-fun FavCard() {
+fun FavCard(image: Int, text: String) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -121,13 +120,13 @@ fun FavCard() {
 
     ) {
         Image(
-            painter = painterResource(R.drawable.fc1_short_mantras),
-            contentDescription = "Short Mantras",
+            painter = painterResource(image),
+            contentDescription = text,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.weight(1.8f)
+            modifier = Modifier.weight(2f)
         )
         Text(
-            text = "Short Mantras",
+            text = text,
             modifier = Modifier
                 .weight(4f)
                 .padding(horizontal = 16.dp),
