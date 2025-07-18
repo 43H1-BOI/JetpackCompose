@@ -83,6 +83,50 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
             AlignCard(R.drawable.ab6_pre_natal_yoga,"Pre natal yoga")
         }
     }
+
+    BottomAppBar(
+        actions = {
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                IconButton(
+                    onClick = { TODO() },
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Home,
+                        contentDescription = "Home",
+                        modifier = Modifier.size(40.dp)
+                    )
+                }
+                Text(
+                    text = "Home",
+                    textAlign = TextAlign.Center
+                )
+            }
+
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                IconButton(
+                    onClick = { TODO() },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = "Profile",
+                        modifier = Modifier.size(40.dp)
+                    )
+                }
+                Text(
+                    text = "Profile",
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    )
+
 }
 
 
