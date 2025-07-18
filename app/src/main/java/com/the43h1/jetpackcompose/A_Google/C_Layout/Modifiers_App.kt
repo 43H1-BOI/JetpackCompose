@@ -110,8 +110,33 @@ fun AlignCard(image: Int, description : String) {
 
 //@Preview(showSystemUi = true)
 @Composable
-private fun AlignCardPreview() {
-    Row {
-        AlignCard(R.drawable.ab1_inversions,"Inversions")
+fun FavCard() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .width(280.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .height(100.dp)
+            .background(Color.LightGray.copy(alpha = 0.5f))
+
+    ) {
+        Image(
+            painter = painterResource(R.drawable.fc1_short_mantras),
+            contentDescription = "Short Mantras",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.weight(1.8f)
+        )
+        Text(
+            text = "Short Mantras",
+            modifier = Modifier
+                .weight(4f)
+                .padding(horizontal = 16.dp),
+            textAlign = TextAlign.Left,
+            fontSize = 20.sp,
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.W300,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1
+        )
     }
 }
