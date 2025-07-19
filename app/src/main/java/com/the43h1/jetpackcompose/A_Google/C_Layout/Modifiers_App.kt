@@ -47,10 +47,11 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(20.dp))
         /** Search Bar */
         TextField(
+            leadingIcon = {
+                Icon(Icons.Default.Search, "Search")
+            },
             label = {
                 Row {
-                    Icon(Icons.Default.Search, "Search")
-                    Spacer(modifier = Modifier.width(8.dp))
                     Text("Search")
                 }
             },
