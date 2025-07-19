@@ -72,7 +72,7 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
             fontFamily = FontFamily.SansSerif
         )
         Spacer(modifier = Modifier.height(12.dp))
-        Row(
+        LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.horizontalScroll(rememberScrollState())
         ) {
