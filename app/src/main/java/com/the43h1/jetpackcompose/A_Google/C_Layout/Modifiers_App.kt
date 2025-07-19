@@ -215,3 +215,63 @@ fun FavCard(image: Int, text: String) {
         )
     }
 }
+
+@Preview
+@Composable
+fun BottomNavBar(
+    button1: Boolean = true,
+    button2: Boolean = !button1,
+    onClick1: () -> Unit = {},
+    onClick2: () -> Unit = {}
+) {
+    NavigationBar(containerColor = Color(0xffe6e1de)) {
+        NavigationBarItem(
+            selected = button1,
+            onClick = { onClick1() },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Home,
+                    contentDescription = "Home",
+                    modifier = Modifier.size(35.dp)
+                )
+            },
+            label = {
+                Text(
+                    text = "Home",
+                    fontSize = 14.sp,
+                    textAlign = TextAlign.Center
+                )
+            },
+            colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
+        )
+
+        NavigationBarItem(
+            selected = button2,
+            onClick = { onClick2() },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Profile",
+                    modifier = Modifier.size(35.dp)
+                )
+            },
+            label = {
+                Text(
+                    text = "Profile",
+                    fontSize = 14.sp,
+                    textAlign = TextAlign.Center,
+                )
+            },
+            colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
+        )
+    }
+}
+
+//@Preview(showSystemUi = true)
+@Composable
+private fun CardPreview() {
+//    Row {
+//        AlignCard(R.drawable.ab1_inversions, "Inversions")
+//    FavCard()
+//    }
+}
