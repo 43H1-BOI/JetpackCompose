@@ -68,13 +68,16 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
         /** Align Your body */
         Text(
             "Align Your Body",
+            fontWeight = FontWeight.W400,
             fontSize = 18.sp,
             fontFamily = FontFamily.SansSerif
         )
+
         Spacer(modifier = Modifier.height(12.dp))
+
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.horizontalScroll(rememberScrollState())
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier
         ) {
             items(AlignList) { item ->
                 AlignCard(item.image, item.title)
@@ -104,55 +107,14 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
             }
         }
     }
-
-    BottomAppBar(
-        actions = {
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                IconButton(
-                    onClick = { TODO() },
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Home,
-                        contentDescription = "Home",
-                        modifier = Modifier.size(40.dp)
-                    )
-                }
-                Text(
-                    text = "Home",
-                    textAlign = TextAlign.Center
-                )
-            }
-
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                IconButton(
-                    onClick = { TODO() },
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Person,
-                        contentDescription = "Profile",
-                        modifier = Modifier.size(40.dp)
-                    )
-                }
-                Text(
-                    text = "Profile",
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-    )
-
 }
 
 
 @Composable
-fun AlignCard(image: Int, description: String) {
+fun AlignCard(
+    @DrawableRes image: Int,
+    description: String
+) {
     Column {
         Image(
             painter = painterResource(image),
@@ -174,7 +136,10 @@ fun AlignCard(image: Int, description: String) {
 
 
 @Composable
-fun FavCard(image: Int, text: String) {
+fun FavCard(
+    @DrawableRes image: Int,
+    text: String
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -196,7 +161,7 @@ fun FavCard(image: Int, text: String) {
                 .weight(4f)
                 .padding(horizontal = 16.dp),
             textAlign = TextAlign.Left,
-            fontSize = 20.sp,
+            fontSize = 18.sp,
             fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.W300,
             overflow = TextOverflow.Ellipsis,
@@ -254,13 +219,4 @@ fun BottomNavBar(
             colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
         )
     }
-}
-
-//@Preview(showSystemUi = true)
-@Composable
-private fun CardPreview() {
-//    Row {
-//        AlignCard(R.drawable.ab1_inversions, "Inversions")
-//    FavCard()
-//    }
 }
