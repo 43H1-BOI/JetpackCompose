@@ -76,12 +76,9 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.horizontalScroll(rememberScrollState())
         ) {
-            AlignCard(R.drawable.ab1_inversions, "Inversions")
-            AlignCard(R.drawable.ab2_quick_yoga, "Quick yoga")
-            AlignCard(R.drawable.ab3_stretching, "Stretching")
-            AlignCard(R.drawable.ab4_tabata, "Tabata")
-            AlignCard(R.drawable.ab5_hiit, "Hit")
-            AlignCard(R.drawable.ab6_pre_natal_yoga, "Pre natal yoga")
+            items(AlignList) { item ->
+                AlignCard(item.image, item.title)
+            }
         }
 
         Spacer(modifier = Modifier.height(20.dp))
