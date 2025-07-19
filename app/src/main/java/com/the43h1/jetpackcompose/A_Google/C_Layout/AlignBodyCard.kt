@@ -16,3 +16,18 @@ var AlignList = listOf<AlignBodyCardDetails>(
     AlignBodyCardDetails(R.drawable.ab5_hiit, "Hit"),
     AlignBodyCardDetails(R.drawable.ab6_pre_natal_yoga, "Pre natal yoga")
 )
+
+
+data class FavBodyCardDetails(
+    @DrawableRes val image: Int,
+    val title: String
+)
+
+var FavList = listOf<FavBodyCardDetails>(
+    FavBodyCardDetails(R.drawable.fc1_short_mantras, "Short Mantras"),
+    FavBodyCardDetails(R.drawable.fc2_nature_meditations, "Nature meditations"),
+    FavBodyCardDetails(R.drawable.fc3_stress_and_anxiety, "Stress and Anxiety"),
+    FavBodyCardDetails(R.drawable.fc4_self_massage, "Self massage"),
+    FavBodyCardDetails(R.drawable.fc5_overwhelmed, "Overwhelmed"),
+    FavBodyCardDetails(R.drawable.fc6_nightly_wind_down, "Nightly wind down")
+)
