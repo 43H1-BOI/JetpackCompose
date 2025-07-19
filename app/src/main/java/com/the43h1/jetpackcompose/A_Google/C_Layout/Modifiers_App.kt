@@ -178,8 +178,8 @@ fun BottomNavBar(
     onClick1: () -> Unit = {},
     onClick2: () -> Unit = {}
 ) {
-    NavigationBar(containerColor = Color(0xffe6e1de)) {
-        NavigationBarItem(
+    NavigationRail(containerColor = Color(0xffe6e1de)) {
+        NavigationRailItem(
             selected = button1,
             onClick = { onClick1() },
             icon = {
