@@ -93,25 +93,14 @@ fun Modifiers_App(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Column(
-            modifier = Modifier.horizontalScroll(rememberScrollState())
+        LazyHorizontalGrid(
+            rows = GridCells.Fixed(2),
+            modifier = Modifier.height(200.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-                FavCard(R.drawable.fc1_short_mantras, "Short Mantras")
-                FavCard(R.drawable.fc2_nature_meditations, "Nature meditations")
-                FavCard(R.drawable.fc3_stress_and_anxiety, "Stress and Anxiety")
-            }
-
-            Spacer(modifier = Modifier.height(18.dp))
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-                FavCard(R.drawable.fc4_self_massage, "Self massage")
-                FavCard(R.drawable.fc5_overwhelmed, "Overwhelmed")
-                FavCard(R.drawable.fc6_nightly_wind_down, "Nightly wind down")
+            items(FavList) { item ->
+                FavCard(item.image, item.title)
             }
         }
     }
