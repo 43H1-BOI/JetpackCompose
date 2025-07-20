@@ -172,51 +172,116 @@ fun FavCard(
 
 @Preview
 @Composable
-fun BottomNavBar(
+fun BottomNavBarHorizontal(
     button1: Boolean = true,
     button2: Boolean = !button1,
     onClick1: () -> Unit = {},
-    onClick2: () -> Unit = {}
+    onClick2: () -> Unit = {},
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
+) {
+    NavigationBar(containerColor = Color(0xffe6e1de)) {
+        Row(
+            modifier = modifier.fillMaxWidth(),
+//            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            NavigationBarItem(
+                selected = button1,
+                onClick = { onClick1() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Home,
+                        contentDescription = "Home",
+                        modifier = Modifier.size(35.dp)
+                    )
+                },
+                label = {
+                    Text(
+                        text = "Home",
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center
+                    )
+                },
+                colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
+            )
+
+            NavigationBarItem(
+                selected = button2,
+                onClick = { onClick2() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = "Profile",
+                        modifier = Modifier.size(35.dp)
+                    )
+                },
+                label = {
+                    Text(
+                        text = "Profile",
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                    )
+                },
+                colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
+            )
+        }
+    }
+}
+
+
+@Composable
+fun BottomNavBarVertical(
+    button1: Boolean = true,
+    button2: Boolean = !button1,
+    onClick1: () -> Unit = {},
+    onClick2: () -> Unit = {},
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
     NavigationRail(containerColor = Color(0xffe6e1de)) {
-        NavigationRailItem(
-            selected = button1,
-            onClick = { onClick1() },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = "Home",
-                    modifier = Modifier.size(35.dp)
-                )
-            },
-            label = {
-                Text(
-                    text = "Home",
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center
-                )
-            },
-            colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
-        )
+        Column(
+            modifier = modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            NavigationRailItem(
+                selected = button1,
+                onClick = { onClick1() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Home,
+                        contentDescription = "Home",
+                        modifier = Modifier.size(35.dp)
+                    )
+                },
+                label = {
+                    Text(
+                        text = "Home",
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center
+                    )
+                },
+                colors = NavigationRailItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
+            )
 
-        NavigationBarItem(
-            selected = button2,
-            onClick = { onClick2() },
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "Profile",
-                    modifier = Modifier.size(35.dp)
-                )
-            },
-            label = {
-                Text(
-                    text = "Profile",
-                    fontSize = 14.sp,
-                    textAlign = TextAlign.Center,
-                )
-            },
-            colors = NavigationBarItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
-        )
+            NavigationRailItem(
+                selected = button2,
+                onClick = { onClick2() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = "Profile",
+                        modifier = Modifier.size(35.dp)
+                    )
+                },
+                label = {
+                    Text(
+                        text = "Profile",
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                    )
+                },
+                colors = NavigationRailItemDefaults.colors(indicatorColor = Color(0xffe8e1dc))
+            )
+        }
     }
 }
