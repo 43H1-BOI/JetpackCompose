@@ -489,7 +489,7 @@ private fun MainAppPreview() {
 1. TopBar() -> For All TopBar Contents
 2. SideNavDrawer() -> For Side Navigation Drawer Content
 3. NavButtons() -> For Navigation Buttons
-4. BottomBar() -> For Bottom Navigation Bar
+4. BottomNavBar() -> For Bottom Navigation Bar
 5. BottomDrawer() -> For Bottom Navigation Drawer which pops out when we press + icon
 6. ScaffoldContent() -> Contents of App
 7. MainApp() -> All App Components Combined
