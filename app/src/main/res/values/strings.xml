@@ -70,4 +70,11 @@
     <!--    // Quotes App-->
     <string name="quotesApp" translatable="false">Daily Quotes</string>
 
+    <!--    Affirmations App Google -->
+    <string name="affirmation1" translatable="false">I am strong.</string>
+    <string name="affirmation2" translatable="false">I believe in myself.</string>
+    <string name="affirmation3" translatable="false">Each day is a new opportunity to grow and be a better version of myself.</string>
+    <string name="affirmation4" translatable="false">Every challenge in my life is an opportunity to learn from.</string>
+    <string name="affirmation5" translatable="false">I have so much to be grateful for.</string>
+
 </resources>
